@@ -1,0 +1,128 @@
+import { Request, Response } from "express";
+import { db } from "../lib/db";
+
+export const listCourses = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
+  try {
+    const keyword = req.query.keyword as string | undefined;
+
+    const categories = req.query.category
+      ? Array.isArray(req.query.category)
+        ? (req.query.category as string[])
+        : [req.query.category as string]
+      : undefined;
+
+    const priceFilter = req.query.price as string | undefined;
+    const sortBy = req.query.sort as string | undefined;
+    const page = parseInt(req.query.page as string) || 1;
+    const limit = parseInt(req.query.limit as string) || 12;
+    const skip = (page - 1) * limit;
+
+    let where: any = {};
+    let orderBy: any = { createdAt: "desc" };
+
+    if (keyword) {
+      where.OR = [
+        { title: { contains: keyword, mode: "insensitive" } },
+        { description: { contains: keyword, mode: "insensitive" } },
+      ];
+    }
+
+    switch (sortBy) {
+      case "price_asc":
+        orderBy = { price: "asc" };
+        break;
+      case "price_desc":
+        orderBy = { price: "desc" };
+        break;
+      default:
+        orderBy = { createdAt: "desc" };
+    }
+
+    if (categories) {
+      where.category = {
+        in: categories,
+      };
+    }
+
+    if (priceFilter) {
+      switch (priceFilter) {
+        case "free":
+          where.price = 0;
+          break;
+        case "paid":
+          where.price = {
+            gt: 0,
+          };
+          break;
+      }
+    }
+
+    const [courses, total] = await Promise.all([
+      db.course.findMany({
+        where,
+        include: {
+          sections: {
+            include: {
+              chapters: true,
+            },
+          },
+          author: {
+            select: {
+              id: true,
+              name: true,
+              image: true,
+            },
+          },
+        },
+        orderBy,
+        skip,
+        take: limit,
+      }),
+      db.course.count({ where }),
+    ]);
+
+    res.status(200).json({
+      message: "Courses retrieved successfully",
+      data: courses,
+      pagination: {
+        total,
+        page,
+        limit,
+        totalPages: Math.ceil(total / limit),
+      },
+    });
+  } catch (error) {
+    console.error("Error retrieving courses:", error);
+    res.status(500).json({ message: "Error retrieving courses", error });
+  }
+};
+
+export const getCourse = async (req: Request, res: Response): Promise<void> => {
+  const { courseId } = req.params;
+
+  try {
+    const course = await db.course.findUnique({
+      where: {
+        id: courseId,
+      },
+      include: {
+        transactions: true,
+      },
+    });
+
+    if (!course) {
+      res.status(404).json({ message: "Course not found" });
+      return;
+    }
+
+    res
+      .status(200)
+      .json({ message: "Course retrieved successfully", data: course });
+  } catch (error) {
+    console.error("Error retrieving course:", error);
+    res.status(500).json({ message: "Error retrieving course", error });
+  }
+};

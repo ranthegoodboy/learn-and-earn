@@ -1,0 +1,163 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             String               @id @default(auto()) @map("_id") @db.ObjectId
+  googleId       String?
+  email          String               @unique
+  name           String?
+  password       String?
+  emailVerified  DateTime?
+  image          String?
+  about          String?
+  experinces     String[]
+  education      String[]
+  createdAt      DateTime             @default(now())
+  updatedAt      DateTime             @updatedAt
+  accounts       Account[]
+  comments       Comment[]
+  transactions   Transaction[]
+  userProgresses UserCourseProgress[]
+  courses        Course[]
+}
+
+model Account {
+  id                String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId            String   @db.ObjectId
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Course {
+  id             String   @id @default(cuid()) @map("_id") @db.ObjectId
+  title          String
+  description    String
+  category       String
+  image          String
+  price          Float
+  level          String
+  status         String
+  whatYouLearn   String[]
+  requirements   String[]
+  targetAudience String[]
+  language       String
+
+  sections       Section[]
+  enrollments    String[]
+  analytics      Json
+  createdAt      DateTime             @default(now())
+  updatedAt      DateTime             @updatedAt
+  transactions   Transaction[]
+  userProgresses UserCourseProgress[]
+  userId         String               @db.ObjectId
+  author         User                 @relation(fields: [userId], references: [id])
+  embeddings     Float[]
+}
+
+model Section {
+  id                 String    @id @default(auto()) @map("_id") @db.ObjectId
+  sectionTitle       String
+  sectionDescription String
+  chapters           Chapter[]
+
+  courseId String @db.ObjectId
+  course   Course @relation(fields: [courseId], references: [id])
+}
+
+model Chapter {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  type          String
+  title         String
+  content       String
+  videoLength   Float
+  videoUrl      String
+  videoUniqueId String
+  videoType     String
+  comments      Comment[]
+
+  sectionId          String               @db.ObjectId
+  Section            Section              @relation(fields: [sectionId], references: [id])
+  UserCourseProgress UserCourseProgress[]
+}
+
+model Comment {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  text      String
+  timestamp DateTime @default(now())
+
+  userId    String  @db.ObjectId
+  user      User    @relation(fields: [userId], references: [id])
+  chapterId String  @db.ObjectId
+  chapters  Chapter @relation(fields: [chapterId], references: [id])
+}
+
+model Transaction {
+  id              String   @id @default(auto()) @map("_id") @db.ObjectId
+  dateTime        DateTime
+  paymentProvider String
+  amount          Float
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  userId   String @db.ObjectId
+  user     User   @relation(fields: [userId], references: [id])
+  courseId String @db.ObjectId
+  course   Course @relation(fields: [courseId], references: [id])
+}
+
+model UserCourseProgress {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  enrollmentDate        DateTime
+  overallProgress       Float
+  sections              UserCourseSectionProgress[]
+  lastAccessedTimestamp DateTime
+  createdAt             DateTime                    @default(now())
+  updatedAt             DateTime                    @updatedAt
+  courseId              String                      @db.ObjectId
+  course                Course                      @relation(fields: [courseId], references: [id])
+
+  userId String @db.ObjectId
+  user   User   @relation(fields: [userId], references: [id])
+
+  chapter   Chapter? @relation(fields: [chapterId], references: [id])
+  chapterId String?  @db.ObjectId
+}
+
+model UserCourseSectionProgress {
+  id                   String                      @id @default(auto()) @map("_id") @db.ObjectId
+  sectionId            String
+  chapters             UserCourseChapterProgress[]
+  userCourseProgressId String                      @db.ObjectId
+  userCourseProgress   UserCourseProgress          @relation(fields: [userCourseProgressId], references: [id])
+}
+
+model UserCourseChapterProgress {
+  id                          String                    @id @default(auto()) @map("_id") @db.ObjectId
+  chapterId                   String
+  completed                   Boolean
+  lastPosition                Float
+  userCourseSectionProgressId String                    @db.ObjectId
+  userCourseSectionProgress   UserCourseSectionProgress @relation(fields: [userCourseSectionProgressId], references: [id])
+}
