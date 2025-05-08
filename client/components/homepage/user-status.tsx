@@ -16,8 +16,6 @@ import { Logout } from "../auth/logout";
 export function UserStatus() {
   const user = useCurrentUser();
 
-  console.log(user);
-
   if (user) {
     return (
       <DropdownMenu>

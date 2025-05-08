@@ -14,10 +14,11 @@ export const listCourses = async (
         : [req.query.category as string]
       : undefined;
 
+    const level = req.query.level as string | undefined;
     const priceFilter = req.query.price as string | undefined;
-    const sortBy = req.query.sort as string | undefined;
+    const sortBy = req.query.sortBy as string | undefined;
     const page = parseInt(req.query.page as string) || 1;
-    const limit = parseInt(req.query.limit as string) || 12;
+    const limit = parseInt(req.query.limit as string) || 9;
     const skip = (page - 1) * limit;
 
     let where: any = {};
@@ -45,6 +46,18 @@ export const listCourses = async (
       where.category = {
         in: categories,
       };
+    }
+
+    switch (level) {
+      case "advanced":
+        where.level = "Advanced";
+        break;
+      case "intermediate":
+        where.level = "Intermediate";
+        break;
+      case "beginner":
+        where.level = "Beginner";
+        break;
     }
 
     if (priceFilter) {

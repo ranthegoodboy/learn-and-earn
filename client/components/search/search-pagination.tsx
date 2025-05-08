@@ -1,6 +1,7 @@
 import {
   Pagination,
   PaginationContent,
+  PaginationEllipsis,
   PaginationItem,
   PaginationLink,
   PaginationNext,
@@ -11,7 +12,7 @@ import React from "react";
 interface SearchPaginationProps {
   currentPage: number;
   totalPages: number;
-  onPageChange: (page: number) => void;
+  onPageChange: (page: string) => void;
 }
 
 const SearchPagination = ({
@@ -19,25 +20,22 @@ const SearchPagination = ({
   totalPages,
   onPageChange,
 }: SearchPaginationProps) => {
-  // Don't render pagination if there's only one page
-  if (totalPages <= 1) {
+  if (!totalPages || totalPages <= 1) {
     return null;
   }
 
-  // Generate pagination items
   const renderPaginationItems = () => {
     const items = [];
     const maxVisiblePages = 5;
 
     if (totalPages <= maxVisiblePages) {
-      // Show all pages if total is less than max visible
       for (let i = 1; i <= totalPages; i++) {
         items.push(
           <PaginationItem key={i}>
             <PaginationLink
               onClick={(e) => {
                 e.preventDefault();
-                onPageChange(i);
+                onPageChange(i.toString());
               }}
               href="#"
               isActive={currentPage === i}
@@ -48,13 +46,12 @@ const SearchPagination = ({
         );
       }
     } else {
-      // Show with ellipsis for many pages
       items.push(
         <PaginationItem key={1}>
           <PaginationLink
             onClick={(e) => {
               e.preventDefault();
-              onPageChange(1);
+              onPageChange("1");
             }}
             href="#"
             isActive={currentPage === 1}
@@ -70,9 +67,7 @@ const SearchPagination = ({
       if (currentPage > 3) {
         items.push(
           <PaginationItem key="start-ellipsis">
-            <span className="flex h-9 w-9 items-center justify-center">
-              ...
-            </span>
+            <PaginationEllipsis />
           </PaginationItem>
         );
       }
@@ -83,7 +78,7 @@ const SearchPagination = ({
             <PaginationLink
               onClick={(e) => {
                 e.preventDefault();
-                onPageChange(i);
+                onPageChange(i.toString());
               }}
               href="#"
               isActive={currentPage === i}
@@ -97,9 +92,7 @@ const SearchPagination = ({
       if (currentPage < totalPages - 2) {
         items.push(
           <PaginationItem key="end-ellipsis">
-            <span className="flex h-9 w-9 items-center justify-center">
-              ...
-            </span>
+            <PaginationEllipsis />
           </PaginationItem>
         );
       }
@@ -109,7 +102,7 @@ const SearchPagination = ({
           <PaginationLink
             onClick={(e) => {
               e.preventDefault();
-              onPageChange(totalPages);
+              onPageChange(totalPages.toString());
             }}
             href="#"
             isActive={currentPage === totalPages}
@@ -130,7 +123,7 @@ const SearchPagination = ({
           <PaginationPrevious
             onClick={(e) => {
               e.preventDefault();
-              if (currentPage > 1) onPageChange(currentPage - 1);
+              if (currentPage > 1) onPageChange((currentPage - 1).toString());
             }}
             href="#"
             className={
@@ -145,7 +138,8 @@ const SearchPagination = ({
           <PaginationNext
             onClick={(e) => {
               e.preventDefault();
-              if (currentPage < totalPages) onPageChange(currentPage + 1);
+              if (currentPage < totalPages)
+                onPageChange((currentPage + 1).toString());
             }}
             href="#"
             className={

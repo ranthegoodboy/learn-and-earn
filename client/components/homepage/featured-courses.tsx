@@ -16,7 +16,6 @@ import CourseCard from "./course-card";
 const FeaturedCourses = () => {
   const { data } = useCourses();
   const courses = data?.data as Course[];
-  console.log("courses", courses);
 
   return (
     <section className="py-16 bg-background">

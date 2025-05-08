@@ -1,136 +1,93 @@
 "use client";
 
-import SearchFilters from "@/components/search/SearchFilters";
-import { Input } from "@/components/ui/input";
-import { Search } from "lucide-react";
-import { useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
-
+import SearchFilters from "@/components/search/search-filters";
+import SearchInput from "@/components/search/search-input";
 import SearchPagination from "@/components/search/search-pagination";
 import SearchResultsGrid from "@/components/search/search-results-grid";
 import SearchSortToggle from "@/components/search/search-sort-toggle";
-import type { Course } from "@/data/mockCourses";
-import { mockCourses } from "@/data/mockCourses";
+import { useCourses } from "@/hooks/course/use-courses";
+import { Course } from "@/types";
+import { useQueryState } from "nuqs";
 
 const SearchResultsPage = () => {
-  const [searchParams] = useSearchParams();
-  const navigate = useNavigate();
-  const query = searchParams.get("q") || "";
-  const [showOnlyFree, setShowOnlyFree] = useState(false);
-  const [category, setCategory] = useState<string | undefined>(undefined);
-  const [sortBy, setSortBy] = useState<string>("relevance");
-  const [currentPage, setCurrentPage] = useState(1);
-  const resultsPerPage = 12;
-
-  // Filter search results based on criteria
-  const filteredResults = mockCourses.filter((result) => {
-    const priceCondition = showOnlyFree ? result.price === 0 : true;
-    const categoryCondition = category ? result.category === category : true;
-    const queryCondition =
-      result.title.toLowerCase().includes(query.toLowerCase()) ||
-      result.description.toLowerCase().includes(query.toLowerCase());
-    return priceCondition && categoryCondition && queryCondition;
+  const [keyword, setKeyword] = useQueryState("keyword");
+  const [sortBy, setSortBy] = useQueryState("sortBy", {
+    defaultValue: "newest",
+  });
+  const [priceFilter, setPriceFilter] = useQueryState("price", {
+    defaultValue: "all",
+  });
+  const [level, setLevel] = useQueryState("level", {
+    defaultValue: "all",
+  });
+  const [rating, setRating] = useQueryState("rating", {
+    defaultValue: "all",
+  });
+  const [currentPage, setCurrentPage] = useQueryState("page", {
+    defaultValue: "1",
   });
 
-  // Sort search results
-  const sortedResults = [...filteredResults].sort((a, b) => {
-    if (sortBy === "price-asc") {
-      return a.price - b.price;
-    } else if (sortBy === "price-desc") {
-      return b.price - a.price;
-    } else if (sortBy === "rating") {
-      return b.rating - a.rating;
-    }
-    return 0; // Default: relevance (no change)
-  });
-
-  // Calculate pagination
-  const totalPages = Math.ceil(sortedResults.length / resultsPerPage);
-  const startIndex = (currentPage - 1) * resultsPerPage;
-  const paginatedResults = sortedResults.slice(
-    startIndex,
-    startIndex + resultsPerPage
+  const { data, isLoading } = useCourses(
+    keyword || undefined,
+    undefined, // category
+    sortBy || undefined,
+    priceFilter || undefined,
+    level || undefined,
+    rating || undefined,
+    parseInt(currentPage) || 1
   );
-
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
-  const handleSearch = (newQuery: string) => {
-    navigate(`/search?q=${newQuery}`);
-  };
-
-  const handleCategoryChange = (newCategory: string | undefined) => {
-    setCategory(newCategory);
-    setCurrentPage(1); // Reset to first page on filter change
-  };
-
-  const handlePriceToggle = (checked: boolean) => {
-    setShowOnlyFree(checked);
-    setCurrentPage(1); // Reset to first page on filter change
-  };
+  const courses = data?.data as Course[];
 
   const handleSortByChange = (newSortBy: string) => {
     setSortBy(newSortBy);
-  };
-
-  const resetFilters = () => {
-    setShowOnlyFree(false);
-    setCategory(undefined);
-    setSortBy("relevance");
-    setCurrentPage(1);
   };
 
   return (
     <div className="container py-8">
       <div className="flex items-center justify-between mb-8">
         <h1 className="text-2xl font-bold">Search Results</h1>
-        <div className="w-96 relative">
-          <Input
-            placeholder="Search for courses"
-            className="pl-10"
-            value={query}
-            onChange={(e) => handleSearch(e.target.value)}
-          />
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
-        </div>
+        <SearchInput
+          keyword={keyword || undefined}
+          setKeyword={setKeyword}
+          setCurrentPage={setCurrentPage}
+        />
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
         <div className="col-span-1 space-y-6">
           <SearchFilters
-            showOnlyFree={showOnlyFree}
-            category={category}
-            sortBy={sortBy}
-            onPriceToggle={handlePriceToggle}
-            onCategoryChange={handleCategoryChange}
-            onSortByChange={handleSortByChange}
-            resetFilters={resetFilters}
+            priceFilter={priceFilter || undefined}
+            onPriceFilterChange={setPriceFilter}
+            level={level || undefined}
+            onLevelChange={setLevel}
+            rating={rating || undefined}
+            onRatingChange={setRating}
+            setCurrentPage={setCurrentPage}
           />
         </div>
 
-        {/* Search Results */}
         <div className="col-span-1 md:col-span-3">
           <div className="flex items-center justify-between mb-4">
             <p className="text-sm text-muted-foreground">
-              {filteredResults.length} courses found
+              {data?.pagination.total} courses found
             </p>
             <div className="hidden md:block">
               <SearchSortToggle
-                sortBy={sortBy}
+                sortBy={sortBy || undefined}
                 onSortChange={handleSortByChange}
               />
             </div>
           </div>
 
-          <SearchResultsGrid results={paginatedResults} />
+          <SearchResultsGrid results={courses} isLoading={isLoading} />
 
-          <SearchPagination
-            currentPage={currentPage}
-            totalPages={totalPages}
-            onPageChange={handlePageChange}
-          />
+          {data && (
+            <SearchPagination
+              currentPage={parseInt(currentPage || "1")}
+              totalPages={data.pagination?.totalPages}
+              onPageChange={setCurrentPage}
+            />
+          )}
         </div>
       </div>
     </div>

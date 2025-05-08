@@ -5,6 +5,7 @@ import AuthSessionProvider from "@/providers/auth-session-provider";
 import { ReactQueryProviderClient } from "@/providers/react-query-provider-client";
 import { ThemeProviderClient } from "@/providers/theme-provider";
 import { Inter } from "next/font/google";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
 import "./globals.css";
 
 const inter = Inter({
@@ -28,7 +29,7 @@ export default async function RootLayout({
         <ThemeProviderClient>
           <ReactQueryProviderClient>
             <AuthSessionProvider />
-            {children}
+            <NuqsAdapter>{children}</NuqsAdapter>
             <Toaster />
           </ReactQueryProviderClient>
         </ThemeProviderClient>
