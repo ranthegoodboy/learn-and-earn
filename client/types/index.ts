@@ -8,7 +8,7 @@ export type User = {
 export type Author = Pick<User, "id" | "name" | "image">;
 
 export type CourseComment = {
-  id: string; // was commentId
+  id: string;
   userId: string;
   chapterId: string;
   text: string;
@@ -48,7 +48,7 @@ export type Course = {
   image: string;
   price: number;
   level: string;
-  status: string;
+  isPublished: boolean;
   enrollments: CourseEnrollment[];
   analytics?: unknown;
   sections: CourseSection[];
@@ -70,4 +70,29 @@ export type CourseListResponse = {
 export type CourseDetailResponse = {
   message: string;
   data: Course;
+};
+
+export type CourseOverview = {
+  id: string;
+  author: Author;
+  title: string;
+  description: string;
+  category: string;
+  image: string;
+  price: number;
+  level: string;
+  sections: CourseSectionOverview[];
+  createdAt?: string;
+  updatedAt?: string;
+};
+
+export type CourseChapterOverview = Pick<
+  CourseChapter,
+  "title" | "videoLength"
+>;
+
+export type CourseSectionOverview = {
+  sectionTitle: string;
+  sectionDescription: string;
+  chapters: CourseChapterOverview[];
 };

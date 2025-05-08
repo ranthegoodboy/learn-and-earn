@@ -24,14 +24,14 @@ const SearchHeader = () => {
         <Input
           type="text"
           placeholder="What do you want to learn?"
-          className="w-full pl-10 pr-16 focus-visible:ring-primary/50"
+          className="text-primary w-full pl-10 pr-16 focus-visible:ring-primary/50 bg-white"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />
         <Button
           type="submit"
           size="sm"
-          className="absolute right-1 top-1/2 transform -translate-y-1/2 h-8"
+          className="absolute right-1 top-1/2 transform -translate-y-1/2 h-8 cursor-pointer"
         >
           Search
         </Button>

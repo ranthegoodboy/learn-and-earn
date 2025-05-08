@@ -6,7 +6,7 @@ import SearchPagination from "@/components/search/search-pagination";
 import SearchResultsGrid from "@/components/search/search-results-grid";
 import SearchSortToggle from "@/components/search/search-sort-toggle";
 import { useCourses } from "@/hooks/course/use-courses";
-import { Course } from "@/types";
+import { CourseOverview } from "@/types";
 import { useQueryState } from "nuqs";
 
 const SearchResultsPage = () => {
@@ -36,7 +36,9 @@ const SearchResultsPage = () => {
     rating || undefined,
     parseInt(currentPage) || 1
   );
-  const courses = data?.data as Course[];
+  const courses = data?.data as CourseOverview[];
+
+  console.log("courses", courses);
 
   const handleSortByChange = (newSortBy: string) => {
     setSortBy(newSortBy);
@@ -69,7 +71,8 @@ const SearchResultsPage = () => {
         <div className="col-span-1 md:col-span-3">
           <div className="flex items-center justify-between mb-4">
             <p className="text-sm text-muted-foreground">
-              {data?.pagination.total} courses found
+              {data?.pagination.total} courses found{" "}
+              {keyword && `for "${keyword}"`}
             </p>
             <div className="hidden md:block">
               <SearchSortToggle

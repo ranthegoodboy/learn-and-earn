@@ -65,6 +65,24 @@ export type UserCourseSectionProgress = $Result.DefaultSelection<Prisma.$UserCou
 export type UserCourseChapterProgress = $Result.DefaultSelection<Prisma.$UserCourseChapterProgressPayload>
 
 /**
+ * Enums
+ */
+export namespace $Enums {
+  export const Level: {
+  Beginner: 'Beginner',
+  Intermediate: 'Intermediate',
+  Advanced: 'Advanced'
+};
+
+export type Level = (typeof Level)[keyof typeof Level]
+
+}
+
+export type Level = $Enums.Level
+
+export const Level: typeof $Enums.Level
+
+/**
  * ##  Prisma Client ʲˢ
  *
  * Type-safe database client for TypeScript & Node.js
@@ -4217,8 +4235,8 @@ export namespace Prisma {
     category: string | null
     image: string | null
     price: number | null
-    level: string | null
-    status: string | null
+    level: $Enums.Level | null
+    isPublished: boolean | null
     language: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -4232,8 +4250,8 @@ export namespace Prisma {
     category: string | null
     image: string | null
     price: number | null
-    level: string | null
-    status: string | null
+    level: $Enums.Level | null
+    isPublished: boolean | null
     language: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -4248,7 +4266,7 @@ export namespace Prisma {
     image: number
     price: number
     level: number
-    status: number
+    isPublished: number
     whatYouLearn: number
     requirements: number
     targetAudience: number
@@ -4281,7 +4299,7 @@ export namespace Prisma {
     image?: true
     price?: true
     level?: true
-    status?: true
+    isPublished?: true
     language?: true
     createdAt?: true
     updatedAt?: true
@@ -4296,7 +4314,7 @@ export namespace Prisma {
     image?: true
     price?: true
     level?: true
-    status?: true
+    isPublished?: true
     language?: true
     createdAt?: true
     updatedAt?: true
@@ -4311,7 +4329,7 @@ export namespace Prisma {
     image?: true
     price?: true
     level?: true
-    status?: true
+    isPublished?: true
     whatYouLearn?: true
     requirements?: true
     targetAudience?: true
@@ -4418,8 +4436,8 @@ export namespace Prisma {
     category: string
     image: string
     price: number
-    level: string
-    status: string
+    level: $Enums.Level
+    isPublished: boolean
     whatYouLearn: string[]
     requirements: string[]
     targetAudience: string[]
@@ -4459,7 +4477,7 @@ export namespace Prisma {
     image?: boolean
     price?: boolean
     level?: boolean
-    status?: boolean
+    isPublished?: boolean
     whatYouLearn?: boolean
     requirements?: boolean
     targetAudience?: boolean
@@ -4487,7 +4505,7 @@ export namespace Prisma {
     image?: boolean
     price?: boolean
     level?: boolean
-    status?: boolean
+    isPublished?: boolean
     whatYouLearn?: boolean
     requirements?: boolean
     targetAudience?: boolean
@@ -4500,7 +4518,7 @@ export namespace Prisma {
     embeddings?: boolean
   }
 
-  export type CourseOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "category" | "image" | "price" | "level" | "status" | "whatYouLearn" | "requirements" | "targetAudience" | "language" | "enrollments" | "analytics" | "createdAt" | "updatedAt" | "userId" | "embeddings", ExtArgs["result"]["course"]>
+  export type CourseOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "category" | "image" | "price" | "level" | "isPublished" | "whatYouLearn" | "requirements" | "targetAudience" | "language" | "enrollments" | "analytics" | "createdAt" | "updatedAt" | "userId" | "embeddings", ExtArgs["result"]["course"]>
   export type CourseInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     sections?: boolean | Course$sectionsArgs<ExtArgs>
     transactions?: boolean | Course$transactionsArgs<ExtArgs>
@@ -4524,8 +4542,8 @@ export namespace Prisma {
       category: string
       image: string
       price: number
-      level: string
-      status: string
+      level: $Enums.Level
+      isPublished: boolean
       whatYouLearn: string[]
       requirements: string[]
       targetAudience: string[]
@@ -4938,8 +4956,8 @@ export namespace Prisma {
     readonly category: FieldRef<"Course", 'String'>
     readonly image: FieldRef<"Course", 'String'>
     readonly price: FieldRef<"Course", 'Float'>
-    readonly level: FieldRef<"Course", 'String'>
-    readonly status: FieldRef<"Course", 'String'>
+    readonly level: FieldRef<"Course", 'Level'>
+    readonly isPublished: FieldRef<"Course", 'Boolean'>
     readonly whatYouLearn: FieldRef<"Course", 'String[]'>
     readonly requirements: FieldRef<"Course", 'String[]'>
     readonly targetAudience: FieldRef<"Course", 'String[]'>
@@ -12720,7 +12738,7 @@ export namespace Prisma {
     image: 'image',
     price: 'price',
     level: 'level',
-    status: 'status',
+    isPublished: 'isPublished',
     whatYouLearn: 'whatYouLearn',
     requirements: 'requirements',
     targetAudience: 'targetAudience',
@@ -12899,9 +12917,16 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Json'
+   * Reference to a field of type 'Level'
    */
-  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+  export type EnumLevelFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Level'>
+    
+
+
+  /**
+   * Reference to a field of type 'Level[]'
+   */
+  export type ListEnumLevelFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Level[]'>
     
 
 
@@ -12909,6 +12934,13 @@ export namespace Prisma {
    * Reference to a field of type 'Boolean'
    */
   export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
+   * Reference to a field of type 'Json'
+   */
+  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
     
   /**
    * Deep Input Types
@@ -13130,8 +13162,8 @@ export namespace Prisma {
     category?: StringFilter<"Course"> | string
     image?: StringFilter<"Course"> | string
     price?: FloatFilter<"Course"> | number
-    level?: StringFilter<"Course"> | string
-    status?: StringFilter<"Course"> | string
+    level?: EnumLevelFilter<"Course"> | $Enums.Level
+    isPublished?: BoolFilter<"Course"> | boolean
     whatYouLearn?: StringNullableListFilter<"Course">
     requirements?: StringNullableListFilter<"Course">
     targetAudience?: StringNullableListFilter<"Course">
@@ -13156,7 +13188,7 @@ export namespace Prisma {
     image?: SortOrder
     price?: SortOrder
     level?: SortOrder
-    status?: SortOrder
+    isPublished?: SortOrder
     whatYouLearn?: SortOrder
     requirements?: SortOrder
     targetAudience?: SortOrder
@@ -13183,8 +13215,8 @@ export namespace Prisma {
     category?: StringFilter<"Course"> | string
     image?: StringFilter<"Course"> | string
     price?: FloatFilter<"Course"> | number
-    level?: StringFilter<"Course"> | string
-    status?: StringFilter<"Course"> | string
+    level?: EnumLevelFilter<"Course"> | $Enums.Level
+    isPublished?: BoolFilter<"Course"> | boolean
     whatYouLearn?: StringNullableListFilter<"Course">
     requirements?: StringNullableListFilter<"Course">
     targetAudience?: StringNullableListFilter<"Course">
@@ -13209,7 +13241,7 @@ export namespace Prisma {
     image?: SortOrder
     price?: SortOrder
     level?: SortOrder
-    status?: SortOrder
+    isPublished?: SortOrder
     whatYouLearn?: SortOrder
     requirements?: SortOrder
     targetAudience?: SortOrder
@@ -13237,8 +13269,8 @@ export namespace Prisma {
     category?: StringWithAggregatesFilter<"Course"> | string
     image?: StringWithAggregatesFilter<"Course"> | string
     price?: FloatWithAggregatesFilter<"Course"> | number
-    level?: StringWithAggregatesFilter<"Course"> | string
-    status?: StringWithAggregatesFilter<"Course"> | string
+    level?: EnumLevelWithAggregatesFilter<"Course"> | $Enums.Level
+    isPublished?: BoolWithAggregatesFilter<"Course"> | boolean
     whatYouLearn?: StringNullableListFilter<"Course">
     requirements?: StringNullableListFilter<"Course">
     targetAudience?: StringNullableListFilter<"Course">
@@ -13953,8 +13985,8 @@ export namespace Prisma {
     category: string
     image: string
     price: number
-    level: string
-    status: string
+    level?: $Enums.Level
+    isPublished: boolean
     whatYouLearn?: CourseCreatewhatYouLearnInput | string[]
     requirements?: CourseCreaterequirementsInput | string[]
     targetAudience?: CourseCreatetargetAudienceInput | string[]
@@ -13977,8 +14009,8 @@ export namespace Prisma {
     category: string
     image: string
     price: number
-    level: string
-    status: string
+    level?: $Enums.Level
+    isPublished: boolean
     whatYouLearn?: CourseCreatewhatYouLearnInput | string[]
     requirements?: CourseCreaterequirementsInput | string[]
     targetAudience?: CourseCreatetargetAudienceInput | string[]
@@ -14000,8 +14032,8 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
-    level?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
+    level?: EnumLevelFieldUpdateOperationsInput | $Enums.Level
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
     whatYouLearn?: CourseUpdatewhatYouLearnInput | string[]
     requirements?: CourseUpdaterequirementsInput | string[]
     targetAudience?: CourseUpdatetargetAudienceInput | string[]
@@ -14023,8 +14055,8 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
-    level?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
+    level?: EnumLevelFieldUpdateOperationsInput | $Enums.Level
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
     whatYouLearn?: CourseUpdatewhatYouLearnInput | string[]
     requirements?: CourseUpdaterequirementsInput | string[]
     targetAudience?: CourseUpdatetargetAudienceInput | string[]
@@ -14047,8 +14079,8 @@ export namespace Prisma {
     category: string
     image: string
     price: number
-    level: string
-    status: string
+    level?: $Enums.Level
+    isPublished: boolean
     whatYouLearn?: CourseCreatewhatYouLearnInput | string[]
     requirements?: CourseCreaterequirementsInput | string[]
     targetAudience?: CourseCreatetargetAudienceInput | string[]
@@ -14067,8 +14099,8 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
-    level?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
+    level?: EnumLevelFieldUpdateOperationsInput | $Enums.Level
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
     whatYouLearn?: CourseUpdatewhatYouLearnInput | string[]
     requirements?: CourseUpdaterequirementsInput | string[]
     targetAudience?: CourseUpdatetargetAudienceInput | string[]
@@ -14086,8 +14118,8 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
-    level?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
+    level?: EnumLevelFieldUpdateOperationsInput | $Enums.Level
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
     whatYouLearn?: CourseUpdatewhatYouLearnInput | string[]
     requirements?: CourseUpdaterequirementsInput | string[]
     targetAudience?: CourseUpdatetargetAudienceInput | string[]
@@ -14856,6 +14888,18 @@ export namespace Prisma {
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatFilter<$PrismaModel> | number
   }
+
+  export type EnumLevelFilter<$PrismaModel = never> = {
+    equals?: $Enums.Level | EnumLevelFieldRefInput<$PrismaModel>
+    in?: $Enums.Level[] | ListEnumLevelFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Level[] | ListEnumLevelFieldRefInput<$PrismaModel>
+    not?: NestedEnumLevelFilter<$PrismaModel> | $Enums.Level
+  }
+
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
   export type JsonFilter<$PrismaModel = never> =
     | PatchUndefined<
         Either<Required<JsonFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonFilterBase<$PrismaModel>>, 'path'>>,
@@ -14894,7 +14938,7 @@ export namespace Prisma {
     image?: SortOrder
     price?: SortOrder
     level?: SortOrder
-    status?: SortOrder
+    isPublished?: SortOrder
     whatYouLearn?: SortOrder
     requirements?: SortOrder
     targetAudience?: SortOrder
@@ -14920,7 +14964,7 @@ export namespace Prisma {
     image?: SortOrder
     price?: SortOrder
     level?: SortOrder
-    status?: SortOrder
+    isPublished?: SortOrder
     language?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -14935,7 +14979,7 @@ export namespace Prisma {
     image?: SortOrder
     price?: SortOrder
     level?: SortOrder
-    status?: SortOrder
+    isPublished?: SortOrder
     language?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -14961,6 +15005,24 @@ export namespace Prisma {
     _sum?: NestedFloatFilter<$PrismaModel>
     _min?: NestedFloatFilter<$PrismaModel>
     _max?: NestedFloatFilter<$PrismaModel>
+  }
+
+  export type EnumLevelWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Level | EnumLevelFieldRefInput<$PrismaModel>
+    in?: $Enums.Level[] | ListEnumLevelFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Level[] | ListEnumLevelFieldRefInput<$PrismaModel>
+    not?: NestedEnumLevelWithAggregatesFilter<$PrismaModel> | $Enums.Level
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumLevelFilter<$PrismaModel>
+    _max?: NestedEnumLevelFilter<$PrismaModel>
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
   export type JsonWithAggregatesFilter<$PrismaModel = never> =
     | PatchUndefined<
@@ -15224,11 +15286,6 @@ export namespace Prisma {
     userCourseProgressId?: SortOrder
   }
 
-  export type BoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
   export type UserCourseSectionProgressScalarRelationFilter = {
     is?: UserCourseSectionProgressWhereInput
     isNot?: UserCourseSectionProgressWhereInput
@@ -15264,14 +15321,6 @@ export namespace Prisma {
 
   export type UserCourseChapterProgressSumOrderByAggregateInput = {
     lastPosition?: SortOrder
-  }
-
-  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type UserCreateexperincesInput = {
@@ -15617,6 +15666,14 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type EnumLevelFieldUpdateOperationsInput = {
+    set?: $Enums.Level
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
   }
 
   export type CourseUpdatewhatYouLearnInput = {
@@ -16094,10 +16151,6 @@ export namespace Prisma {
     connect?: UserCourseSectionProgressWhereUniqueInput
   }
 
-  export type BoolFieldUpdateOperationsInput = {
-    set?: boolean
-  }
-
   export type UserCourseSectionProgressUpdateOneRequiredWithoutChaptersNestedInput = {
     create?: XOR<UserCourseSectionProgressCreateWithoutChaptersInput, UserCourseSectionProgressUncheckedCreateWithoutChaptersInput>
     connectOrCreate?: UserCourseSectionProgressCreateOrConnectWithoutChaptersInput
@@ -16285,6 +16338,18 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
+  export type NestedEnumLevelFilter<$PrismaModel = never> = {
+    equals?: $Enums.Level | EnumLevelFieldRefInput<$PrismaModel>
+    in?: $Enums.Level[] | ListEnumLevelFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Level[] | ListEnumLevelFieldRefInput<$PrismaModel>
+    not?: NestedEnumLevelFilter<$PrismaModel> | $Enums.Level
+  }
+
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
     in?: number[] | ListFloatFieldRefInput<$PrismaModel>
@@ -16300,6 +16365,24 @@ export namespace Prisma {
     _min?: NestedFloatFilter<$PrismaModel>
     _max?: NestedFloatFilter<$PrismaModel>
   }
+
+  export type NestedEnumLevelWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Level | EnumLevelFieldRefInput<$PrismaModel>
+    in?: $Enums.Level[] | ListEnumLevelFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Level[] | ListEnumLevelFieldRefInput<$PrismaModel>
+    not?: NestedEnumLevelWithAggregatesFilter<$PrismaModel> | $Enums.Level
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumLevelFilter<$PrismaModel>
+    _max?: NestedEnumLevelFilter<$PrismaModel>
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
   export type NestedJsonFilter<$PrismaModel = never> =
     | PatchUndefined<
         Either<Required<NestedJsonFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>,
@@ -16310,19 +16393,6 @@ export namespace Prisma {
   export type NestedJsonFilterBase<$PrismaModel = never> = {
     equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-  }
-
-  export type NestedBoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
-  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type AccountCreateWithoutUserInput = {
@@ -16458,8 +16528,8 @@ export namespace Prisma {
     category: string
     image: string
     price: number
-    level: string
-    status: string
+    level?: $Enums.Level
+    isPublished: boolean
     whatYouLearn?: CourseCreatewhatYouLearnInput | string[]
     requirements?: CourseCreaterequirementsInput | string[]
     targetAudience?: CourseCreatetargetAudienceInput | string[]
@@ -16481,8 +16551,8 @@ export namespace Prisma {
     category: string
     image: string
     price: number
-    level: string
-    status: string
+    level?: $Enums.Level
+    isPublished: boolean
     whatYouLearn?: CourseCreatewhatYouLearnInput | string[]
     requirements?: CourseCreaterequirementsInput | string[]
     targetAudience?: CourseCreatetargetAudienceInput | string[]
@@ -16656,8 +16726,8 @@ export namespace Prisma {
     category?: StringFilter<"Course"> | string
     image?: StringFilter<"Course"> | string
     price?: FloatFilter<"Course"> | number
-    level?: StringFilter<"Course"> | string
-    status?: StringFilter<"Course"> | string
+    level?: EnumLevelFilter<"Course"> | $Enums.Level
+    isPublished?: BoolFilter<"Course"> | boolean
     whatYouLearn?: StringNullableListFilter<"Course">
     requirements?: StringNullableListFilter<"Course">
     targetAudience?: StringNullableListFilter<"Course">
@@ -17035,8 +17105,8 @@ export namespace Prisma {
     category: string
     image: string
     price: number
-    level: string
-    status: string
+    level?: $Enums.Level
+    isPublished: boolean
     whatYouLearn?: CourseCreatewhatYouLearnInput | string[]
     requirements?: CourseCreaterequirementsInput | string[]
     targetAudience?: CourseCreatetargetAudienceInput | string[]
@@ -17058,8 +17128,8 @@ export namespace Prisma {
     category: string
     image: string
     price: number
-    level: string
-    status: string
+    level?: $Enums.Level
+    isPublished: boolean
     whatYouLearn?: CourseCreatewhatYouLearnInput | string[]
     requirements?: CourseCreaterequirementsInput | string[]
     targetAudience?: CourseCreatetargetAudienceInput | string[]
@@ -17127,8 +17197,8 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
-    level?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
+    level?: EnumLevelFieldUpdateOperationsInput | $Enums.Level
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
     whatYouLearn?: CourseUpdatewhatYouLearnInput | string[]
     requirements?: CourseUpdaterequirementsInput | string[]
     targetAudience?: CourseUpdatetargetAudienceInput | string[]
@@ -17149,8 +17219,8 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
-    level?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
+    level?: EnumLevelFieldUpdateOperationsInput | $Enums.Level
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
     whatYouLearn?: CourseUpdatewhatYouLearnInput | string[]
     requirements?: CourseUpdaterequirementsInput | string[]
     targetAudience?: CourseUpdatetargetAudienceInput | string[]
@@ -17501,8 +17571,8 @@ export namespace Prisma {
     category: string
     image: string
     price: number
-    level: string
-    status: string
+    level?: $Enums.Level
+    isPublished: boolean
     whatYouLearn?: CourseCreatewhatYouLearnInput | string[]
     requirements?: CourseCreaterequirementsInput | string[]
     targetAudience?: CourseCreatetargetAudienceInput | string[]
@@ -17524,8 +17594,8 @@ export namespace Prisma {
     category: string
     image: string
     price: number
-    level: string
-    status: string
+    level?: $Enums.Level
+    isPublished: boolean
     whatYouLearn?: CourseCreatewhatYouLearnInput | string[]
     requirements?: CourseCreaterequirementsInput | string[]
     targetAudience?: CourseCreatetargetAudienceInput | string[]
@@ -17609,8 +17679,8 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
-    level?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
+    level?: EnumLevelFieldUpdateOperationsInput | $Enums.Level
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
     whatYouLearn?: CourseUpdatewhatYouLearnInput | string[]
     requirements?: CourseUpdaterequirementsInput | string[]
     targetAudience?: CourseUpdatetargetAudienceInput | string[]
@@ -17631,8 +17701,8 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
-    level?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
+    level?: EnumLevelFieldUpdateOperationsInput | $Enums.Level
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
     whatYouLearn?: CourseUpdatewhatYouLearnInput | string[]
     requirements?: CourseUpdaterequirementsInput | string[]
     targetAudience?: CourseUpdatetargetAudienceInput | string[]
@@ -17675,8 +17745,8 @@ export namespace Prisma {
     category: string
     image: string
     price: number
-    level: string
-    status: string
+    level?: $Enums.Level
+    isPublished: boolean
     whatYouLearn?: CourseCreatewhatYouLearnInput | string[]
     requirements?: CourseCreaterequirementsInput | string[]
     targetAudience?: CourseCreatetargetAudienceInput | string[]
@@ -17698,8 +17768,8 @@ export namespace Prisma {
     category: string
     image: string
     price: number
-    level: string
-    status: string
+    level?: $Enums.Level
+    isPublished: boolean
     whatYouLearn?: CourseCreatewhatYouLearnInput | string[]
     requirements?: CourseCreaterequirementsInput | string[]
     targetAudience?: CourseCreatetargetAudienceInput | string[]
@@ -17835,8 +17905,8 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
-    level?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
+    level?: EnumLevelFieldUpdateOperationsInput | $Enums.Level
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
     whatYouLearn?: CourseUpdatewhatYouLearnInput | string[]
     requirements?: CourseUpdaterequirementsInput | string[]
     targetAudience?: CourseUpdatetargetAudienceInput | string[]
@@ -17857,8 +17927,8 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
-    level?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
+    level?: EnumLevelFieldUpdateOperationsInput | $Enums.Level
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
     whatYouLearn?: CourseUpdatewhatYouLearnInput | string[]
     requirements?: CourseUpdaterequirementsInput | string[]
     targetAudience?: CourseUpdatetargetAudienceInput | string[]
@@ -18156,8 +18226,8 @@ export namespace Prisma {
     category: string
     image: string
     price: number
-    level: string
-    status: string
+    level?: $Enums.Level
+    isPublished: boolean
     whatYouLearn?: CourseCreatewhatYouLearnInput | string[]
     requirements?: CourseCreaterequirementsInput | string[]
     targetAudience?: CourseCreatetargetAudienceInput | string[]
@@ -18297,8 +18367,8 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
-    level?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
+    level?: EnumLevelFieldUpdateOperationsInput | $Enums.Level
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
     whatYouLearn?: CourseUpdatewhatYouLearnInput | string[]
     requirements?: CourseUpdaterequirementsInput | string[]
     targetAudience?: CourseUpdatetargetAudienceInput | string[]
@@ -18319,8 +18389,8 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
-    level?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
+    level?: EnumLevelFieldUpdateOperationsInput | $Enums.Level
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
     whatYouLearn?: CourseUpdatewhatYouLearnInput | string[]
     requirements?: CourseUpdaterequirementsInput | string[]
     targetAudience?: CourseUpdatetargetAudienceInput | string[]
@@ -18341,8 +18411,8 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
-    level?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
+    level?: EnumLevelFieldUpdateOperationsInput | $Enums.Level
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
     whatYouLearn?: CourseUpdatewhatYouLearnInput | string[]
     requirements?: CourseUpdaterequirementsInput | string[]
     targetAudience?: CourseUpdatetargetAudienceInput | string[]

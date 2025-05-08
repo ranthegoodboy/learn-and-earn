@@ -21,7 +21,7 @@ export const listCourses = async (
     const limit = parseInt(req.query.limit as string) || 9;
     const skip = (page - 1) * limit;
 
-    let where: any = {};
+    let where: any = { isPublished: true };
     let orderBy: any = { createdAt: "desc" };
 
     if (keyword) {
@@ -76,10 +76,26 @@ export const listCourses = async (
     const [courses, total] = await Promise.all([
       db.course.findMany({
         where,
-        include: {
+        select: {
+          id: true,
+          title: true,
+          description: true,
+          category: true,
+          image: true,
+          price: true,
+          level: true,
+          createdAt: true,
+          updatedAt: true,
           sections: {
-            include: {
-              chapters: true,
+            select: {
+              sectionDescription: true,
+              sectionTitle: true,
+              chapters: {
+                select: {
+                  title: true,
+                  videoLength: true,
+                },
+              },
             },
           },
           author: {

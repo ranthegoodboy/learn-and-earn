@@ -1,10 +1,10 @@
-import { Course } from "@/types";
+import { CourseOverview } from "@/types";
 
 import CourseCard from "../homepage/course-card";
 import { CourseGridSkeleton } from "../skeletons/course-grid-skeleton";
 
 interface SearchResultsGridProps {
-  results: Course[];
+  results: CourseOverview[];
   isLoading?: boolean;
 }
 

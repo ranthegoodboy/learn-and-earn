@@ -8,14 +8,14 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { useCourses } from "@/hooks/course/use-courses";
-import { Course } from "@/types";
+import { CourseOverview } from "@/types";
 import { TrendingUp } from "lucide-react";
 import Link from "next/link";
 import CourseCard from "./course-card";
 
 const FeaturedCourses = () => {
   const { data } = useCourses();
-  const courses = data?.data as Course[];
+  const courses = data?.data as CourseOverview[];
 
   return (
     <section className="py-16 bg-background">

@@ -1,4 +1,4 @@
-import { PrismaClient } from "../generated/prisma";
+import { Level, PrismaClient } from "../generated/prisma";
 import { coursesSeed } from "./seed-data-course";
 
 const prisma = new PrismaClient();
@@ -16,8 +16,8 @@ async function seedCourses() {
           category: course.category,
           image: course.image,
           price: course.price,
-          level: course.level,
-          status: course.status,
+          level: course.level as Level,
+          isPublished: course.isPublished,
           whatYouLearn: course.whatYouLearn,
           requirements: course.requirements,
           targetAudience: course.targetAudience,

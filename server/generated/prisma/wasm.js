@@ -150,7 +150,7 @@ exports.Prisma.CourseScalarFieldEnum = {
   image: 'image',
   price: 'price',
   level: 'level',
-  status: 'status',
+  isPublished: 'isPublished',
   whatYouLearn: 'whatYouLearn',
   requirements: 'requirements',
   targetAudience: 'targetAudience',
@@ -236,7 +236,11 @@ exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
 };
-
+exports.Level = exports.$Enums.Level = {
+  Beginner: 'Beginner',
+  Intermediate: 'Intermediate',
+  Advanced: 'Advanced'
+};
 
 exports.Prisma.ModelName = {
   User: 'User',

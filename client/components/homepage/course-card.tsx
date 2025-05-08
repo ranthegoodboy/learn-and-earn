@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { Course } from "@/types";
+import { CourseOverview } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -14,10 +14,10 @@ const CourseCard = ({
   category,
   price,
   sections,
-}: Course) => {
+}: CourseOverview) => {
   return (
     <Card
-      className={`p-0 course-card overflow-hidden h-full flex flex-col  border-secondary/50 shadow-md
+      className={`p-0 course-card overflow-hidden h-full flex flex-col  border-gray-300 shadow-md
       }`}
     >
       <div className="relative">
