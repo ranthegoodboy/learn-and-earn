@@ -1953,7 +1953,7 @@ export namespace Prisma {
     emailVerified: number
     image: number
     about: number
-    experinces: number
+    experiences: number
     education: number
     createdAt: number
     updatedAt: number
@@ -1996,7 +1996,7 @@ export namespace Prisma {
     emailVerified?: true
     image?: true
     about?: true
-    experinces?: true
+    experiences?: true
     education?: true
     createdAt?: true
     updatedAt?: true
@@ -2084,7 +2084,7 @@ export namespace Prisma {
     emailVerified: Date | null
     image: string | null
     about: string | null
-    experinces: string[]
+    experiences: string[]
     education: string[]
     createdAt: Date
     updatedAt: Date
@@ -2116,7 +2116,7 @@ export namespace Prisma {
     emailVerified?: boolean
     image?: boolean
     about?: boolean
-    experinces?: boolean
+    experiences?: boolean
     education?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -2139,13 +2139,13 @@ export namespace Prisma {
     emailVerified?: boolean
     image?: boolean
     about?: boolean
-    experinces?: boolean
+    experiences?: boolean
     education?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "googleId" | "email" | "name" | "password" | "emailVerified" | "image" | "about" | "experinces" | "education" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "googleId" | "email" | "name" | "password" | "emailVerified" | "image" | "about" | "experiences" | "education" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     accounts?: boolean | User$accountsArgs<ExtArgs>
     comments?: boolean | User$commentsArgs<ExtArgs>
@@ -2173,7 +2173,7 @@ export namespace Prisma {
       emailVerified: Date | null
       image: string | null
       about: string | null
-      experinces: string[]
+      experiences: string[]
       education: string[]
       createdAt: Date
       updatedAt: Date
@@ -2582,7 +2582,7 @@ export namespace Prisma {
     readonly emailVerified: FieldRef<"User", 'DateTime'>
     readonly image: FieldRef<"User", 'String'>
     readonly about: FieldRef<"User", 'String'>
-    readonly experinces: FieldRef<"User", 'String[]'>
+    readonly experiences: FieldRef<"User", 'String[]'>
     readonly education: FieldRef<"User", 'String[]'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
     readonly updatedAt: FieldRef<"User", 'DateTime'>
@@ -12701,7 +12701,7 @@ export namespace Prisma {
     emailVerified: 'emailVerified',
     image: 'image',
     about: 'about',
-    experinces: 'experinces',
+    experiences: 'experiences',
     education: 'education',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -12959,7 +12959,7 @@ export namespace Prisma {
     emailVerified?: DateTimeNullableFilter<"User"> | Date | string | null
     image?: StringNullableFilter<"User"> | string | null
     about?: StringNullableFilter<"User"> | string | null
-    experinces?: StringNullableListFilter<"User">
+    experiences?: StringNullableListFilter<"User">
     education?: StringNullableListFilter<"User">
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
@@ -12979,7 +12979,7 @@ export namespace Prisma {
     emailVerified?: SortOrder
     image?: SortOrder
     about?: SortOrder
-    experinces?: SortOrder
+    experiences?: SortOrder
     education?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -13002,7 +13002,7 @@ export namespace Prisma {
     emailVerified?: DateTimeNullableFilter<"User"> | Date | string | null
     image?: StringNullableFilter<"User"> | string | null
     about?: StringNullableFilter<"User"> | string | null
-    experinces?: StringNullableListFilter<"User">
+    experiences?: StringNullableListFilter<"User">
     education?: StringNullableListFilter<"User">
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
@@ -13022,7 +13022,7 @@ export namespace Prisma {
     emailVerified?: SortOrder
     image?: SortOrder
     about?: SortOrder
-    experinces?: SortOrder
+    experiences?: SortOrder
     education?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -13043,7 +13043,7 @@ export namespace Prisma {
     emailVerified?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
     image?: StringNullableWithAggregatesFilter<"User"> | string | null
     about?: StringNullableWithAggregatesFilter<"User"> | string | null
-    experinces?: StringNullableListFilter<"User">
+    experiences?: StringNullableListFilter<"User">
     education?: StringNullableListFilter<"User">
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
@@ -13752,7 +13752,7 @@ export namespace Prisma {
     emailVerified?: Date | string | null
     image?: string | null
     about?: string | null
-    experinces?: UserCreateexperincesInput | string[]
+    experiences?: UserCreateexperiencesInput | string[]
     education?: UserCreateeducationInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -13772,7 +13772,7 @@ export namespace Prisma {
     emailVerified?: Date | string | null
     image?: string | null
     about?: string | null
-    experinces?: UserCreateexperincesInput | string[]
+    experiences?: UserCreateexperiencesInput | string[]
     education?: UserCreateeducationInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -13791,7 +13791,7 @@ export namespace Prisma {
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     about?: NullableStringFieldUpdateOperationsInput | string | null
-    experinces?: UserUpdateexperincesInput | string[]
+    experiences?: UserUpdateexperiencesInput | string[]
     education?: UserUpdateeducationInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13810,7 +13810,7 @@ export namespace Prisma {
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     about?: NullableStringFieldUpdateOperationsInput | string | null
-    experinces?: UserUpdateexperincesInput | string[]
+    experiences?: UserUpdateexperiencesInput | string[]
     education?: UserUpdateeducationInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13830,7 +13830,7 @@ export namespace Prisma {
     emailVerified?: Date | string | null
     image?: string | null
     about?: string | null
-    experinces?: UserCreateexperincesInput | string[]
+    experiences?: UserCreateexperiencesInput | string[]
     education?: UserCreateeducationInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -13844,7 +13844,7 @@ export namespace Prisma {
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     about?: NullableStringFieldUpdateOperationsInput | string | null
-    experinces?: UserUpdateexperincesInput | string[]
+    experiences?: UserUpdateexperiencesInput | string[]
     education?: UserUpdateeducationInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13858,7 +13858,7 @@ export namespace Prisma {
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     about?: NullableStringFieldUpdateOperationsInput | string | null
-    experinces?: UserUpdateexperincesInput | string[]
+    experiences?: UserUpdateexperiencesInput | string[]
     education?: UserUpdateeducationInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -14682,7 +14682,7 @@ export namespace Prisma {
     emailVerified?: SortOrder
     image?: SortOrder
     about?: SortOrder
-    experinces?: SortOrder
+    experiences?: SortOrder
     education?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -15323,7 +15323,7 @@ export namespace Prisma {
     lastPosition?: SortOrder
   }
 
-  export type UserCreateexperincesInput = {
+  export type UserCreateexperiencesInput = {
     set: string[]
   }
 
@@ -15415,7 +15415,7 @@ export namespace Prisma {
     unset?: boolean
   }
 
-  export type UserUpdateexperincesInput = {
+  export type UserUpdateexperiencesInput = {
     set?: string[]
     push?: string | string[]
   }
@@ -16749,7 +16749,7 @@ export namespace Prisma {
     emailVerified?: Date | string | null
     image?: string | null
     about?: string | null
-    experinces?: UserCreateexperincesInput | string[]
+    experiences?: UserCreateexperiencesInput | string[]
     education?: UserCreateeducationInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -16768,7 +16768,7 @@ export namespace Prisma {
     emailVerified?: Date | string | null
     image?: string | null
     about?: string | null
-    experinces?: UserCreateexperincesInput | string[]
+    experiences?: UserCreateexperiencesInput | string[]
     education?: UserCreateeducationInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -16802,7 +16802,7 @@ export namespace Prisma {
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     about?: NullableStringFieldUpdateOperationsInput | string | null
-    experinces?: UserUpdateexperincesInput | string[]
+    experiences?: UserUpdateexperiencesInput | string[]
     education?: UserUpdateeducationInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -16820,7 +16820,7 @@ export namespace Prisma {
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     about?: NullableStringFieldUpdateOperationsInput | string | null
-    experinces?: UserUpdateexperincesInput | string[]
+    experiences?: UserUpdateexperiencesInput | string[]
     education?: UserUpdateeducationInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -16924,7 +16924,7 @@ export namespace Prisma {
     emailVerified?: Date | string | null
     image?: string | null
     about?: string | null
-    experinces?: UserCreateexperincesInput | string[]
+    experiences?: UserCreateexperiencesInput | string[]
     education?: UserCreateeducationInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -16943,7 +16943,7 @@ export namespace Prisma {
     emailVerified?: Date | string | null
     image?: string | null
     about?: string | null
-    experinces?: UserCreateexperincesInput | string[]
+    experiences?: UserCreateexperiencesInput | string[]
     education?: UserCreateeducationInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -17035,7 +17035,7 @@ export namespace Prisma {
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     about?: NullableStringFieldUpdateOperationsInput | string | null
-    experinces?: UserUpdateexperincesInput | string[]
+    experiences?: UserUpdateexperiencesInput | string[]
     education?: UserUpdateeducationInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -17053,7 +17053,7 @@ export namespace Prisma {
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     about?: NullableStringFieldUpdateOperationsInput | string | null
-    experinces?: UserUpdateexperincesInput | string[]
+    experiences?: UserUpdateexperiencesInput | string[]
     education?: UserUpdateeducationInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -17374,7 +17374,7 @@ export namespace Prisma {
     emailVerified?: Date | string | null
     image?: string | null
     about?: string | null
-    experinces?: UserCreateexperincesInput | string[]
+    experiences?: UserCreateexperiencesInput | string[]
     education?: UserCreateeducationInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -17393,7 +17393,7 @@ export namespace Prisma {
     emailVerified?: Date | string | null
     image?: string | null
     about?: string | null
-    experinces?: UserCreateexperincesInput | string[]
+    experiences?: UserCreateexperiencesInput | string[]
     education?: UserCreateeducationInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -17458,7 +17458,7 @@ export namespace Prisma {
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     about?: NullableStringFieldUpdateOperationsInput | string | null
-    experinces?: UserUpdateexperincesInput | string[]
+    experiences?: UserUpdateexperiencesInput | string[]
     education?: UserUpdateeducationInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -17476,7 +17476,7 @@ export namespace Prisma {
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     about?: NullableStringFieldUpdateOperationsInput | string | null
-    experinces?: UserUpdateexperincesInput | string[]
+    experiences?: UserUpdateexperiencesInput | string[]
     education?: UserUpdateeducationInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -17530,7 +17530,7 @@ export namespace Prisma {
     emailVerified?: Date | string | null
     image?: string | null
     about?: string | null
-    experinces?: UserCreateexperincesInput | string[]
+    experiences?: UserCreateexperiencesInput | string[]
     education?: UserCreateeducationInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -17549,7 +17549,7 @@ export namespace Prisma {
     emailVerified?: Date | string | null
     image?: string | null
     about?: string | null
-    experinces?: UserCreateexperincesInput | string[]
+    experiences?: UserCreateexperiencesInput | string[]
     education?: UserCreateeducationInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -17634,7 +17634,7 @@ export namespace Prisma {
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     about?: NullableStringFieldUpdateOperationsInput | string | null
-    experinces?: UserUpdateexperincesInput | string[]
+    experiences?: UserUpdateexperiencesInput | string[]
     education?: UserUpdateeducationInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -17652,7 +17652,7 @@ export namespace Prisma {
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     about?: NullableStringFieldUpdateOperationsInput | string | null
-    experinces?: UserUpdateexperincesInput | string[]
+    experiences?: UserUpdateexperiencesInput | string[]
     education?: UserUpdateeducationInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -17798,7 +17798,7 @@ export namespace Prisma {
     emailVerified?: Date | string | null
     image?: string | null
     about?: string | null
-    experinces?: UserCreateexperincesInput | string[]
+    experiences?: UserCreateexperiencesInput | string[]
     education?: UserCreateeducationInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -17817,7 +17817,7 @@ export namespace Prisma {
     emailVerified?: Date | string | null
     image?: string | null
     about?: string | null
-    experinces?: UserCreateexperincesInput | string[]
+    experiences?: UserCreateexperiencesInput | string[]
     education?: UserCreateeducationInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -17962,7 +17962,7 @@ export namespace Prisma {
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     about?: NullableStringFieldUpdateOperationsInput | string | null
-    experinces?: UserUpdateexperincesInput | string[]
+    experiences?: UserUpdateexperiencesInput | string[]
     education?: UserUpdateeducationInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -17980,7 +17980,7 @@ export namespace Prisma {
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     about?: NullableStringFieldUpdateOperationsInput | string | null
-    experinces?: UserUpdateexperincesInput | string[]
+    experiences?: UserUpdateexperiencesInput | string[]
     education?: UserUpdateeducationInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string

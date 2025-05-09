@@ -54,13 +54,18 @@ export function UserStatus() {
   return (
     <div className="flex gap-2">
       <Link href="/login">
-        <Button variant="ghost" className="flex items-center gap-2">
+        <Button
+          variant="ghost"
+          className="flex items-center gap-2 cursor-pointer bg-accent"
+        >
           <LogIn size={18} />
           <span>Log In</span>
         </Button>
       </Link>
       <Link href="/register">
-        <Button variant="secondary">Sign Up</Button>
+        <Button variant="secondary" className="cursor-pointer">
+          Sign Up
+        </Button>
       </Link>
     </div>
   );

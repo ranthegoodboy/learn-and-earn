@@ -8,6 +8,7 @@ import morgan from "morgan";
 import passport from "passport";
 import authRoutes from "./routes/authRoutes";
 import courseRoutes from "./routes/courseRoutes";
+import userRoutes from "./routes/userRoutes";
 import "./strategies/google-strategy";
 import "./strategies/local-strategy";
 
@@ -49,6 +50,7 @@ app.use(passport.session());
 
 app.use("/api/courses", courseRoutes);
 app.use("/api/auth", authRoutes);
+app.use("/api/users", userRoutes);
 
 const port = process.env.PORT || 3001;
 if (!isProduction) {

@@ -17,7 +17,7 @@ async function seedUsers() {
           emailVerified: user.emailVerified,
           image: user.image,
           about: user.about,
-          experinces: user.experinces || [],
+          experiences: user.experiences || [],
           education: user.education || [],
           createdAt: user.createdAt,
           updatedAt: user.updatedAt,

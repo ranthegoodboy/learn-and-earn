@@ -18,7 +18,7 @@ export const usersSeed = [
       "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     about:
       "A passionate software developer with 5 years of experience in web technologies. Loves hiking and photography.",
-    experinces: [
+    experiences: [
       "Senior Frontend Developer at TechSolutions Inc. (2021-Present)",
       "Software Engineer at WebWorks Co. (2019-2021)",
       "Junior Developer at StartApp (2018-2019)",
@@ -41,7 +41,7 @@ export const usersSeed = [
       "https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     about:
       "Data scientist enthusiastic about machine learning and AI. Enjoys playing chess and reading sci-fi novels.",
-    experinces: [
+    experiences: [
       "Lead Data Scientist at DataCorp (2020-Present)",
       "Machine Learning Engineer at AI Innovations (2017-2020)",
     ],
@@ -63,7 +63,7 @@ export const usersSeed = [
       "https://images.pexels.com/photos/1587009/pexels-photo-1587009.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     about:
       "UX/UI designer focused on creating intuitive and beautiful user experiences. Avid traveler and foodie.",
-    experinces: [
+    experiences: [
       "Principal UX Designer at Creative Designs LLC (2022-Present)",
       "UI/UX Specialist at UserFirst Ltd. (2019-2022)",
     ],
@@ -85,7 +85,7 @@ export const usersSeed = [
       "https://images.pexels.com/photos/1680172/pexels-photo-1680172.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     about:
       "Full-stack engineer with a knack for problem-solving and building scalable applications. Enjoys cycling and cooking.",
-    experinces: [
+    experiences: [
       "Staff Engineer at ScaleUp Technologies (2021-Present)",
       "Full Stack Developer at DevHub (2018-2021)",
     ],
@@ -106,7 +106,7 @@ export const usersSeed = [
       "https://images.pexels.com/photos/1065084/pexels-photo-1065084.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     about:
       "Digital marketing specialist with expertise in SEO, SEM, and content strategy. Loves yoga and painting.",
-    experinces: [
+    experiences: [
       "Digital Marketing Manager at MarketGrowth Agency (2020-Present)",
       "SEO Analyst at TopRank Solutions (2018-2020)",
     ],
@@ -128,7 +128,7 @@ export const usersSeed = [
       "https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     about:
       "Cybersecurity expert dedicated to protecting digital assets. Amateur astronomer and history buff.",
-    experinces: [
+    experiences: [
       "Senior Security Analyst at SecureNet Corp (2019-Present)",
       "IT Security Specialist at ProtectData Ltd. (2016-2019)",
     ],
@@ -150,7 +150,7 @@ export const usersSeed = [
       "https://images.pexels.com/photos/1181519/pexels-photo-1181519.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     about:
       "Product manager with a passion for building user-centric products. Enjoys rock climbing and learning new languages.",
-    experinces: [
+    experiences: [
       "Head of Product at InnovateX (2021-Present)",
       "Product Owner at AgileCreations (2018-2021)",
     ],
@@ -172,7 +172,7 @@ export const usersSeed = [
       "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     about:
       "Cloud solutions architect specializing in AWS and Azure. Loves playing guitar and brewing craft beer.",
-    experinces: [
+    experiences: [
       "Principal Cloud Architect at Cloudify Inc. (2020-Present)",
       "DevOps Engineer at Serverless Solutions (2017-2020)",
     ],
@@ -193,7 +193,7 @@ export const usersSeed = [
       "https://images.pexels.com/photos/1130626/pexels-photo-1130626.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     about:
       "Mobile app developer (iOS & Android) with a keen eye for detail. Enjoys photography and volunteering.",
-    experinces: [
+    experiences: [
       "Lead Mobile Developer at AppMakers Co. (2022-Present)",
       "iOS Developer at SwiftApps (2019-2022)",
       "Android Developer Intern at MobileFirst (2018-2019)",
@@ -216,7 +216,7 @@ export const usersSeed = [
       "https://images.pexels.com/photos/1239288/pexels-photo-1239288.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     about:
       "Game developer and designer, passionate about creating immersive gaming experiences. Loves eSports and board games.",
-    experinces: [
+    experiences: [
       "Senior Game Designer at Playful Interactive (2020-Present)",
       "Unity Developer at IndieGame Studio (2017-2020)",
     ],

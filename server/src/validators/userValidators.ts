@@ -14,3 +14,11 @@ export const registerValidator = [
     .matches(/\d/)
     .withMessage("Password must contain at least one number"),
 ];
+
+export const updateUserProfileValidator = [
+  body("name").notEmpty().withMessage("Name is required").trim(),
+  body("about").optional().isString(),
+  body("experinces").optional().isArray(),
+  body("education").optional().isArray(),
+  body("image").optional().isURL(),
+];
