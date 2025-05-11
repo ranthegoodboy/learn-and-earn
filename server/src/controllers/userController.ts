@@ -1,7 +1,6 @@
 import bcrypt from "bcrypt";
 import { Request, Response } from "express";
 import { validationResult } from "express-validator";
-import passport from "passport";
 import { db } from "../lib/db";
 
 export const userProfile = async (

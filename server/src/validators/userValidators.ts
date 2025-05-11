@@ -17,8 +17,17 @@ export const registerValidator = [
 
 export const updateUserProfileValidator = [
   body("name").notEmpty().withMessage("Name is required").trim(),
-  body("about").optional().isString(),
-  body("experinces").optional().isArray(),
-  body("education").optional().isArray(),
-  body("image").optional().isURL(),
+  body("about")
+    .optional()
+    .isString()
+    .withMessage("About must be a text description"),
+  body("experiences")
+    .optional()
+    .isArray()
+    .withMessage("Experiences must be provided as a list"),
+  body("education")
+    .optional()
+    .isArray()
+    .withMessage("Education must be provided as a list"),
+  body("image").optional().isURL().withMessage("Image must be a valid URL"),
 ];

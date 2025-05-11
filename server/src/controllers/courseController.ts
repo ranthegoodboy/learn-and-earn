@@ -129,7 +129,10 @@ export const listCourses = async (
   }
 };
 
-export const getCourse = async (req: Request, res: Response): Promise<void> => {
+export const getCourseOverview = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
   const { courseId } = req.params;
 
   try {
@@ -137,8 +140,35 @@ export const getCourse = async (req: Request, res: Response): Promise<void> => {
       where: {
         id: courseId,
       },
-      include: {
-        transactions: true,
+      select: {
+        id: true,
+        title: true,
+        description: true,
+        category: true,
+        image: true,
+        price: true,
+        level: true,
+        createdAt: true,
+        updatedAt: true,
+        sections: {
+          select: {
+            sectionDescription: true,
+            sectionTitle: true,
+            chapters: {
+              select: {
+                title: true,
+                videoLength: true,
+              },
+            },
+          },
+        },
+        author: {
+          select: {
+            id: true,
+            name: true,
+            image: true,
+          },
+        },
       },
     });
 
