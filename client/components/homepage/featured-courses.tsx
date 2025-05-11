@@ -11,11 +11,16 @@ import { useCourses } from "@/hooks/course/use-courses";
 import { CourseOverview } from "@/types";
 import { TrendingUp } from "lucide-react";
 import Link from "next/link";
+import { CourseGridSkeleton } from "../skeletons/course-grid-skeleton";
 import CourseCard from "./course-card";
 
 const FeaturedCourses = () => {
-  const { data } = useCourses();
+  const { data, isLoading } = useCourses();
   const courses = data?.data as CourseOverview[];
+
+  if (isLoading) {
+    return <CourseGridSkeleton count={3} />;
+  }
 
   return (
     <section className="py-16 bg-background">

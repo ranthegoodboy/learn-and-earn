@@ -23,9 +23,11 @@ export function UserStatus() {
           <Avatar className="cursor-pointer">
             <AvatarImage
               src={user.image ? user.image.trim().replace(/`/g, "") : undefined}
+              //src={user.image || undefined}
               alt={user.name ?? "User"}
             />
-            <AvatarFallback className="text-black">
+
+            <AvatarFallback className="bg-primary-foreground text-primary">
               {user.name
                 ? user.name
                     .split(" ")

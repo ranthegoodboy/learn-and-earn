@@ -6,6 +6,7 @@ import session from "express-session";
 import helmet from "helmet";
 import morgan from "morgan";
 import passport from "passport";
+import MongoStore from "connect-mongo";
 import authRoutes from "./routes/authRoutes";
 import courseRoutes from "./routes/courseRoutes";
 import userRoutes from "./routes/userRoutes";
@@ -27,7 +28,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: process.env.CLIENT_URL as string,
     credentials: true,
   })
 );
@@ -37,6 +38,14 @@ app.use(
     secret: process.env.SESSION_SECRET as string,
     resave: false,
     saveUninitialized: false,
+    store: MongoStore.create({
+      mongoUrl: process.env.DATABASE_URL,
+      ttl: 60 * 60 * 24 * 7,// 1 week
+      autoRemove: 'native',
+      crypto: {
+        secret: process.env.SESSION_SECRET as string,
+      },
+    }),
     cookie: {
       maxAge: 1000 * 60 * 60 * 24 * 7,
       secure: isProduction,

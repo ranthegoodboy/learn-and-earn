@@ -14,14 +14,25 @@ export async function fetchAuthStatus() {
 
 export function useAuthStatus() {
   const setUser = useAuthStore((state) => state.setUser);
+  const clearUser = useAuthStore((state) => state.clearUser);
 
   return useQuery({
     queryKey: ["auth-status"],
     queryFn: async () => {
-      const data = await fetchAuthStatus();
-      setUser(data.user);
-      return data;
+      try {
+        const data = await fetchAuthStatus();
+        setUser(data.user);
+        return data;
+      } catch (error) {
+        clearUser();
+        throw error;
+      }
     },
+    staleTime: 5 * 60 * 1000, // 5 minutes
+    gcTime: 60 * 60 * 1000, // 1 hour
+    refetchOnWindowFocus: true,
+    refetchOnMount: true,
     retry: false,
+    throwOnError: false,
   });
 }
