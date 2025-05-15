@@ -8,6 +8,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { DEFAULT_LOGIN_ROUTE } from "@/config/routes";
 import useCurrentUser from "@/hooks/auth/user-current-user";
 import { LogIn } from "lucide-react";
 import Link from "next/link";
@@ -55,7 +56,7 @@ export function UserStatus() {
 
   return (
     <div className="flex gap-2">
-      <Link href="/login">
+      <Link href={DEFAULT_LOGIN_ROUTE}>
         <Button
           variant="ghost"
           className="flex items-center gap-2 cursor-pointer bg-accent"

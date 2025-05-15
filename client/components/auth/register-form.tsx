@@ -20,6 +20,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { DEFAULT_LOGIN_ROUTE } from "@/config/routes";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 
@@ -83,7 +84,7 @@ export function RegisterForm() {
         if (res.ok) {
           queryClient.invalidateQueries({ queryKey: ["auth-status"] });
           toast.success("Account created successfully.", { duration: 4000 });
-          router.push("/login");
+          router.push(DEFAULT_LOGIN_ROUTE);
         } else {
           const data = await res.json();
           setApiError(data.message || "Registration failed. Please try again.");

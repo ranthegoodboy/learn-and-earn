@@ -1,3 +1,4 @@
+import { DEFAULT_LOGIN_ROUTE } from "@/config/routes";
 import { CreditCard } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
@@ -20,7 +21,7 @@ const EnrollmentButton = ({ courseId, price }: EnrollmentButtonProps) => {
         description: "You need to be logged in to enroll in courses",
         action: {
           label: "Login",
-          onClick: () => router.push("/login"),
+          onClick: () => router.push(DEFAULT_LOGIN_ROUTE),
         },
       });
       return;

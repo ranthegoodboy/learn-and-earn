@@ -10,6 +10,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { DEFAULT_LOGIN_REDIRECT } from "@/config/routes";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useQueryClient } from "@tanstack/react-query";
 import { Eye, EyeOff } from "lucide-react";
@@ -59,7 +60,7 @@ export function LoginForm() {
 
         if (res.ok) {
           queryClient.invalidateQueries({ queryKey: ["auth-status"] });
-          router.push("/");
+          router.push(DEFAULT_LOGIN_REDIRECT);
         } else {
           const data = await res.json();
           setApiError(data.message || "Invalid credentials");

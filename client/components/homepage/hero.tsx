@@ -7,6 +7,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { DEFAULT_LOGIN_ROUTE } from "@/config/routes";
 import { ChevronRight, TrendingUp } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -104,7 +105,10 @@ const Hero = () => {
             </div>
             <p className="text-primary-foreground/70 text-sm">
               Already have an account?{" "}
-              <Link href="/login" className="underline hover:text-secondary">
+              <Link
+                href={DEFAULT_LOGIN_ROUTE}
+                className="underline hover:text-secondary"
+              >
                 Log in
               </Link>
             </p>

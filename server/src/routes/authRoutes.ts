@@ -26,11 +26,12 @@ router.get(
 router.get(
   "/google/callback",
   passport.authenticate("google", {
-    failureRedirect:
-      process.env.LOGIN_REDIRECT_URL || "http://localhost:3000/login",
+    failureRedirect: `${process.env.CLIENT_URL}${process.env.DEFAULT_LOGIN_ROUTE}`,
   }),
   (req, res) => {
-    res.redirect(process.env.CLIENT_URL || "http://localhost:3000");
+    res.redirect(
+      `${process.env.CLIENT_URL}${process.env.DEFAULT_LOGIN_REDIRECT}`
+    );
   }
 );
 

@@ -9,6 +9,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { DEFAULT_LOGIN_ROUTE } from "@/config/routes";
 import Link from "next/link";
 
 const RegisterPage = () => {
@@ -43,7 +44,10 @@ const RegisterPage = () => {
 
             <div className="text-center text-sm">
               Already have an account?{" "}
-              <Link href="/login" className="text-secondary hover:underline">
+              <Link
+                href={DEFAULT_LOGIN_ROUTE}
+                className="text-secondary hover:underline"
+              >
                 Sign in
               </Link>
             </div>
