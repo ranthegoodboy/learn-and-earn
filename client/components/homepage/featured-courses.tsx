@@ -18,6 +18,8 @@ const FeaturedCourses = () => {
   const { data, isLoading } = useCourses();
   const courses = data?.data as CourseOverview[];
 
+  const featuredCourses = courses?.slice(0, 6) || [];
+
   if (isLoading) {
     return <CourseGridSkeleton count={3} />;
   }
@@ -46,13 +48,13 @@ const FeaturedCourses = () => {
           </div>
 
           <CarouselContent className="-ml-1">
-            {courses?.map((course) => (
+            {featuredCourses?.map((course) => (
               <CarouselItem
                 key={course.id}
                 className="pl-1 basis-full sm:basis-1/2 lg:basis-1/3"
               >
                 <div className="flex flex-col h-full p-1">
-                  <CourseCard {...course} />
+                  <CourseCard {...course} isFeatured={true} />
                 </div>
               </CarouselItem>
             ))}

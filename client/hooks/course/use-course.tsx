@@ -7,11 +7,11 @@ export async function fetchCourse(courseId: string) {
       credentials: "include",
     }
   );
-  if (!res.ok) throw new Error("Failed to fetch courses");
+  if (!res.ok) throw new Error("Failed to fetch course overview");
   return res.json();
 }
 
-export function useCourses(courseId: string) {
+export function useCourse(courseId: string) {
   return useQuery({
     queryKey: ["course", courseId],
     queryFn: () => fetchCourse(courseId),

@@ -86,6 +86,10 @@ export const listCourses = async (
           level: true,
           createdAt: true,
           updatedAt: true,
+          whatYouLearn: true,
+          requirements: true,
+          targetAudience: true,
+          language: true,
           sections: {
             select: {
               sectionDescription: true,
@@ -150,6 +154,10 @@ export const getCourseOverview = async (
         level: true,
         createdAt: true,
         updatedAt: true,
+        whatYouLearn: true,
+        requirements: true,
+        targetAudience: true,
+        language: true,
         sections: {
           select: {
             sectionDescription: true,
@@ -177,11 +185,14 @@ export const getCourseOverview = async (
       return;
     }
 
-    res
-      .status(200)
-      .json({ message: "Course retrieved successfully", data: course });
+    res.status(200).json({
+      message: "Course overview retrieved successfully",
+      data: course,
+    });
   } catch (error) {
     console.error("Error retrieving course:", error);
-    res.status(500).json({ message: "Error retrieving course", error });
+    res
+      .status(500)
+      .json({ message: "Error retrieving course overview", error });
   }
 };

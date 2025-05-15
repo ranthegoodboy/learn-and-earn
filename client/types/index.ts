@@ -81,6 +81,10 @@ export type CourseOverview = {
   image: string;
   price: number;
   level: string;
+  whatYouLearn: string[];
+  requirements: string[];
+  targetAudience: string[];
+  language: string;
   sections: CourseSectionOverview[];
   createdAt?: string;
   updatedAt?: string;

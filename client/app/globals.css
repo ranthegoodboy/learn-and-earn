@@ -139,12 +139,12 @@
   h3 {
     @apply text-xl md:text-2xl;
   }
+}
 
-  .course-card {
-    @apply transition-all hover:shadow-lg hover:-translate-y-1 duration-300;
-  }
+.course-card {
+  @apply transition-all hover:shadow-lg hover:-translate-y-1 duration-300;
+}
 
-  .container {
-    @apply px-4 mx-auto max-w-7xl;
-  }
+.container {
+  @apply px-4 mx-auto max-w-7xl;
 }
