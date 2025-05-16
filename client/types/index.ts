@@ -1,3 +1,8 @@
+export type ApiResponseType<T> = {
+  message: string;
+  data: T;
+};
+
 export type User = {
   id: string;
   name?: string | null;
@@ -67,11 +72,6 @@ export type CourseListResponse = {
   };
 };
 
-export type CourseDetailResponse = {
-  message: string;
-  data: Course;
-};
-
 export type CourseOverview = {
   id: string;
   author: Author;
@@ -99,4 +99,18 @@ export type CourseSectionOverview = {
   sectionTitle: string;
   sectionDescription: string;
   chapters: CourseChapterOverview[];
+};
+
+export type UserProfile = {
+  id: string;
+  googleId?: string | null;
+  email: string;
+  name?: string | null;
+  emailVerified?: Date | null;
+  image?: string | null;
+  about?: string | null;
+  experiences: string[];
+  education: string[];
+  createdAt: Date;
+  updatedAt: Date;
 };

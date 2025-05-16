@@ -29,7 +29,7 @@ const SearchResultsPage = () => {
 
   const { data, isLoading } = useCourses(
     keyword || undefined,
-    undefined, // category
+    undefined,
     sortBy || undefined,
     priceFilter || undefined,
     level || undefined,

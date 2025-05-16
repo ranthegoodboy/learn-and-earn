@@ -1,12 +1,13 @@
 import bodyParser from "body-parser";
+import MongoStore from "connect-mongo";
 import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
+import rateLimit from "express-rate-limit";
 import session from "express-session";
 import helmet from "helmet";
 import morgan from "morgan";
 import passport from "passport";
-import MongoStore from "connect-mongo";
 import authRoutes from "./routes/authRoutes";
 import courseRoutes from "./routes/courseRoutes";
 import userRoutes from "./routes/userRoutes";
@@ -32,6 +33,14 @@ app.use(
     credentials: true,
   })
 );
+app.set("trust proxy", 1);
+
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, //15mins
+  max: 100,
+  legacyHeaders: false,
+});
+app.use(limiter);
 
 app.use(
   session({
@@ -40,8 +49,8 @@ app.use(
     saveUninitialized: false,
     store: MongoStore.create({
       mongoUrl: process.env.DATABASE_URL,
-      ttl: 60 * 60 * 24 * 7,// 1 week
-      autoRemove: 'native',
+      ttl: 60 * 60 * 24 * 7, // 1 week
+      autoRemove: "native",
       crypto: {
         secret: process.env.SESSION_SECRET as string,
       },

@@ -1,20 +1,13 @@
+import api from "@/services/api";
 import { useQuery } from "@tanstack/react-query";
-
-export async function fetchCourse(courseId: string) {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/courses/${courseId}`,
-    {
-      credentials: "include",
-    }
-  );
-  if (!res.ok) throw new Error("Failed to fetch course overview");
-  return res.json();
-}
 
 export function useCourse(courseId: string) {
   return useQuery({
     queryKey: ["course", courseId],
-    queryFn: () => fetchCourse(courseId),
-    retry: false,
+    queryFn: async () => {
+      const response = await api.get(`/course/${courseId}`);
+      return response.data;
+    },
+    enabled: !!courseId,
   });
 }
