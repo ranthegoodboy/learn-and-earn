@@ -6,35 +6,26 @@ export async function GET(
   { params }: { params: { courseId: string } }
 ) {
   try {
-    const { courseId } = params;
-
-    //const cookie = request.headers.get("cookie");
+    const { courseId } = await params;
 
     const response = await axios.get(
       `${process.env.NEXT_PUBLIC_API_URL}/api/courses/${courseId}`
-      // {
-      //   headers: {
-      //     ...(cookie ? { Cookie: cookie } : {}),
-      //   },
-      // }
     );
 
-    return NextResponse.json(response.data);
+    return NextResponse.json({
+      success: true,
+      data: response.data,
+      error: null,
+    });
   } catch (error: unknown) {
-    if (axios.isAxiosError(error)) {
-      return NextResponse.json(
-        {
-          error:
-            error.response?.data?.message || "Error retrieving course overview",
-        },
-        { status: error.response?.status || 500 }
-      );
-    }
-    return NextResponse.json(
-      {
-        error: "Unknown error retrieving course overview",
-      },
-      { status: 500 }
-    );
+    const errorResponse = {
+      success: false,
+      data: null,
+      error: axios.isAxiosError(error)
+        ? error.response?.data?.message
+        : "Error retrieving course overview",
+    };
+
+    return NextResponse.json(errorResponse, { status: 200 });
   }
 }

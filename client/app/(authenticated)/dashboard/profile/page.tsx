@@ -39,6 +39,7 @@ type ProfileFormValues = z.infer<typeof profileFormSchema>;
 
 export default function ProfilePage() {
   const user = useCurrentUser();
+
   const { data, isLoading } = useUserProfile(user?.id || "");
   const userProfile = data?.data;
 

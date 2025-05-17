@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { DEFAULT_LOGIN_REDIRECT } from "@/config/routes";
+import api from "@/services/api";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useQueryClient } from "@tanstack/react-query";
 import { Eye, EyeOff } from "lucide-react";
@@ -44,29 +45,16 @@ export function LoginForm() {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     setApiError(null);
     startTransition(async () => {
-      try {
-        const res = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/api/auth/login`,
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            credentials: "include",
-            body: JSON.stringify({
-              email: values.email,
-              password: values.password,
-            }),
-          }
-        );
+      const res = await api.post("/auth/login", {
+        email: values.email,
+        password: values.password,
+      });
 
-        if (res.ok) {
-          queryClient.invalidateQueries({ queryKey: ["auth-status"] });
-          router.push(DEFAULT_LOGIN_REDIRECT);
-        } else {
-          const data = await res.json();
-          setApiError(data.message || "Invalid credentials");
-        }
-      } catch {
-        setApiError("Something went wrong. Please try again.");
+      if (res.data.success) {
+        queryClient.invalidateQueries({ queryKey: ["auth-status"] });
+        router.push(DEFAULT_LOGIN_REDIRECT);
+      } else {
+        setApiError(res.data.error);
       }
     });
   };

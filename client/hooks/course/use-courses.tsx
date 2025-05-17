@@ -1,4 +1,5 @@
 import api from "@/services/api";
+import { type ApiResponseType, type CourseListResponse } from "@/types";
 import { useQuery } from "@tanstack/react-query";
 
 export function useCourses(
@@ -11,7 +12,7 @@ export function useCourses(
   page: number = 1,
   limit: number = 9
 ) {
-  return useQuery({
+  return useQuery<ApiResponseType<CourseListResponse>>({
     queryKey: [
       "courses",
       { keyword, category, sortBy, price, level, rating, page, limit },
@@ -29,6 +30,7 @@ export function useCourses(
       params.append("limit", limit.toString());
 
       const response = await api.get(`/courses?${params.toString()}`);
+
       return response.data;
     },
 

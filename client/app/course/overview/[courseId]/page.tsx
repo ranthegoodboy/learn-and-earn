@@ -2,7 +2,6 @@
 import CourseHeroBanner from "@/components/course-overview/course-hero-banner";
 import CourseOverviewContent from "@/components/course-overview/course-overview-content";
 import { useCourse } from "@/hooks/course/use-course";
-import { CourseOverview as CourseOverviewType } from "@/types";
 import { useParams } from "next/navigation";
 
 const CourseOverview = () => {
@@ -11,9 +10,11 @@ const CourseOverview = () => {
 
   const { data, isLoading, isError, error } = useCourse(courseId);
 
-  const course = data?.data as CourseOverviewType;
+  const course = data?.data;
 
-  console.log("course", course);
+  if (!course || isLoading) {
+    return <div>Loading...</div>;
+  }
 
   if (isError) {
     return (
@@ -21,10 +22,6 @@ const CourseOverview = () => {
         {error.message || "Something went wrong. Please refresh the page."}
       </div>
     );
-  }
-
-  if (isLoading) {
-    return <div>Loading...</div>;
   }
 
   return (

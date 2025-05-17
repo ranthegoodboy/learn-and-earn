@@ -1,6 +1,13 @@
 export type ApiResponseType<T> = {
-  message: string;
+  success: boolean;
   data: T;
+  error: string | null;
+  // pagination: {
+  //   total: number;
+  //   page: number;
+  //   limit: number;
+  //   totalPages: number;
+  // };
 };
 
 export type User = {
@@ -63,7 +70,7 @@ export type Course = {
 
 export type CourseListResponse = {
   message: string;
-  data: Course[];
+  data: CourseOverview[];
   pagination: {
     total: number;
     page: number;

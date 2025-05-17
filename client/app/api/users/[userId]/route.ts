@@ -6,28 +6,35 @@ export async function GET(
   { params }: { params: { userId: string } }
 ) {
   try {
-    const { userId } = params;
+    const { userId } = await params;
+    const cookie = request.headers.get("cookie");
+
     const response = await axios.get(
-      `${process.env.NEXT_PUBLIC_API_URL}/users/${userId}`
+      `${process.env.NEXT_PUBLIC_API_URL}/api/users/${userId}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          ...(cookie ? { Cookie: cookie } : {}),
+        },
+        withCredentials: true,
+      }
     );
 
-    return NextResponse.json(response.data);
+    return NextResponse.json({
+      success: true,
+      data: response.data,
+      error: null,
+    });
   } catch (error: unknown) {
-    if (axios.isAxiosError(error)) {
-      return NextResponse.json(
-        {
-          error:
-            error.response?.data?.message || "Error retrieving course overview",
-        },
-        { status: error.response?.status || 500 }
-      );
-    }
-    return NextResponse.json(
-      {
-        error: "Unknown error retrieving course overview",
-      },
-      { status: 500 }
-    );
+    const errorResponse = {
+      success: false,
+      data: null,
+      error: axios.isAxiosError(error)
+        ? error.response?.data?.message
+        : "Error retrieving user profile.",
+    };
+
+    return NextResponse.json(errorResponse, { status: 200 });
   }
 }
 
@@ -44,22 +51,20 @@ export async function PUT(
       body
     );
 
-    return NextResponse.json(response.data);
+    return NextResponse.json({
+      success: true,
+      data: response.data,
+      error: null,
+    });
   } catch (error: unknown) {
-    if (axios.isAxiosError(error)) {
-      return NextResponse.json(
-        {
-          error:
-            error.response?.data?.message || "Error retrieving course overview",
-        },
-        { status: error.response?.status || 500 }
-      );
-    }
-    return NextResponse.json(
-      {
-        error: "Unknown error retrieving course overview",
-      },
-      { status: 500 }
-    );
+    const errorResponse = {
+      success: false,
+      data: null,
+      error: axios.isAxiosError(error)
+        ? error.response?.data?.message
+        : "Error updating user profile.",
+    };
+
+    return NextResponse.json(errorResponse, { status: 200 });
   }
 }

@@ -1,15 +1,11 @@
 import axios from "axios";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function POST(request: NextRequest) {
+export async function GET(request: NextRequest) {
   try {
-    const body = await request.json();
-    const { email, password } = body;
     const cookie = request.headers.get("cookie");
-
-    const response = await axios.post(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/auth/login`,
-      { email, password },
+    const response = await axios.get(
+      `${process.env.NEXT_PUBLIC_API_URL}/api/auth/logout`,
       {
         headers: {
           "Content-Type": "application/json",
@@ -42,7 +38,7 @@ export async function POST(request: NextRequest) {
       data: null,
       error: axios.isAxiosError(error)
         ? error.response?.data?.message
-        : "Error logging in. Please try again later.",
+        : "Error logging out. Please try again later.",
     };
 
     return NextResponse.json(errorResponse, { status: 200 });

@@ -60,21 +60,23 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Moving dots overlay */}
       <div className="absolute inset-0 z-0">
-        {Array.from({ length: 20 }).map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-2 h-2 rounded-full bg-white/10"
-            style={{
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-              animationDuration: `${Math.random() * 10 + 15}s`,
-              animationDelay: `${Math.random() * 5}s`,
-              animation: "float 20s infinite linear",
-            }}
-          ></div>
-        ))}
+        {Array.from({ length: 20 }).map((_, i) => {
+          const duration = Math.random() * 10 + 15;
+          const delay = Math.random() * 5;
+          return (
+            <div
+              key={i}
+              className="absolute w-2 h-2 rounded-full bg-white/10"
+              style={{
+                top: `${Math.random() * 100}%`,
+                left: `${Math.random() * 100}%`,
+                animation: `float ${duration}s infinite linear`,
+                animationDelay: `${delay}s`,
+              }}
+            ></div>
+          );
+        })}
       </div>
 
       <div className="container relative z-10">

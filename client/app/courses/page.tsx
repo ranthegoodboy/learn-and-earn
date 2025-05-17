@@ -6,7 +6,6 @@ import SearchPagination from "@/components/search/search-pagination";
 import SearchResultsGrid from "@/components/search/search-results-grid";
 import SearchSortToggle from "@/components/search/search-sort-toggle";
 import { useCourses } from "@/hooks/course/use-courses";
-import { CourseOverview } from "@/types";
 import { useQueryState } from "nuqs";
 
 const SearchResultsPage = () => {
@@ -36,9 +35,9 @@ const SearchResultsPage = () => {
     rating || undefined,
     parseInt(currentPage) || 1
   );
-  const courses = data?.data as CourseOverview[];
 
-  console.log("courses", courses);
+  const courses = data?.data?.data || [];
+  const pagination = data?.data?.pagination;
 
   const handleSortByChange = (newSortBy: string) => {
     setSortBy(newSortBy);
@@ -68,30 +67,36 @@ const SearchResultsPage = () => {
           />
         </div>
 
-        <div className="col-span-1 md:col-span-3">
-          <div className="flex items-center justify-between mb-4">
-            <p className="text-sm text-muted-foreground">
-              {data?.pagination.total} courses found{" "}
-              {keyword && `for "${keyword}"`}
-            </p>
-            <div className="hidden md:block">
-              <SearchSortToggle
-                sortBy={sortBy || undefined}
-                onSortChange={handleSortByChange}
-              />
-            </div>
+        {!data?.success && !isLoading ? (
+          <div className="col-span-1 md:col-span-3">
+            Something went wrong. Please refresh the page.
           </div>
+        ) : (
+          <div className="col-span-1 md:col-span-3">
+            <div className="flex items-center justify-between mb-4">
+              <p className="text-sm text-muted-foreground">
+                {pagination?.total} courses found{" "}
+                {keyword && `for "${keyword}"`}
+              </p>
+              <div className="hidden md:block">
+                <SearchSortToggle
+                  sortBy={sortBy || undefined}
+                  onSortChange={handleSortByChange}
+                />
+              </div>
+            </div>
 
-          <SearchResultsGrid results={courses} isLoading={isLoading} />
+            <SearchResultsGrid results={courses} isLoading={isLoading} />
 
-          {data && (
-            <SearchPagination
-              currentPage={parseInt(currentPage || "1")}
-              totalPages={data.pagination?.totalPages}
-              onPageChange={setCurrentPage}
-            />
-          )}
-        </div>
+            {pagination && (
+              <SearchPagination
+                currentPage={parseInt(currentPage || "1")}
+                totalPages={pagination?.totalPages}
+                onPageChange={setCurrentPage}
+              />
+            )}
+          </div>
+        )}
       </div>
     </div>
   );
