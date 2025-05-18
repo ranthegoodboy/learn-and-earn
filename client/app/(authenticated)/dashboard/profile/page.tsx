@@ -22,6 +22,7 @@ import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
 import useCurrentUser from "@/hooks/auth/user-current-user";
 import { useUserProfile } from "@/hooks/user/user-user-profile";
+import { useQueryClient } from "@tanstack/react-query";
 
 const profileFormSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters").max(50),
@@ -30,7 +31,7 @@ const profileFormSchema = z.object({
     .string()
     .max(500, "About section must be less than 500 characters")
     .optional(),
-  image: z.string().url("Must be a valid URL").optional(),
+  image: z.string().optional(),
   experiences: z.array(z.string()).optional(),
   education: z.array(z.string()).optional(),
 });
@@ -38,12 +39,11 @@ const profileFormSchema = z.object({
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
 
 export default function ProfilePage() {
+  const queryClient = useQueryClient();
   const user = useCurrentUser();
 
   const { data, isLoading } = useUserProfile(user?.id || "");
   const userProfile = data?.data;
-
-  console.log("userProfile", userProfile);
 
   const [userId, setUserId] = useState<string | null>(null);
   const [experiences, setExperiences] = useState<string[]>([]);
@@ -75,26 +75,32 @@ export default function ProfilePage() {
         experiences: userProfile.experiences || [],
         education: userProfile.education || [],
       });
+
+      setExperiences(userProfile.experiences || []);
+      setEducation(userProfile.education || []);
     }
   }, [userProfile, form]);
 
   const onSubmit = async (data: ProfileFormValues) => {
+    console.log("data", data);
     if (!userId) return;
 
-    try {
-      // Add the experiences and education arrays to the form data
-      const updatedData = {
-        ...data,
-        experiences,
-        education,
-      };
+    const updatedData = {
+      ...data,
+      experiences,
+      education,
+    };
 
-      await axios.put(`/api/users/${userId}`, updatedData);
+    const res = await axios.put(`/api/users/${userId}`, updatedData);
+
+    if (res.data.success) {
+      queryClient.invalidateQueries({ queryKey: ["userProfile", userId] });
       toast.success("Profile updated successfully");
-    } catch (error) {
-      console.error("Failed to update profile:", error);
-      toast.error("Failed to update profile");
-    } finally {
+    } else {
+      toast.error(
+        res.data.error ||
+          "Something went wrong while updating profile. Please try again."
+      );
     }
   };
 
@@ -245,7 +251,7 @@ export default function ProfilePage() {
               </div>
             </div>
           </CardContent>
-          <CardFooter>
+          <CardFooter className="mt-5">
             <Button type="submit" disabled={isLoading}>
               {isLoading ? "Saving..." : "Save Changes"}
             </Button>

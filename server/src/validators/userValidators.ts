@@ -29,5 +29,4 @@ export const updateUserProfileValidator = [
     .optional()
     .isArray()
     .withMessage("Education must be provided as a list"),
-  body("image").optional().isURL().withMessage("Image must be a valid URL"),
 ];
