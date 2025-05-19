@@ -1,3 +1,4 @@
+import { callBackendApi } from "@/lib/serverApi";
 import axios from "axios";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -7,19 +8,11 @@ export async function GET(
 ) {
   try {
     const { userId } = await params;
-    const cookie = request.headers.get("cookie");
-
-    const response = await axios.get(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/users/${userId}`,
-      {
-        headers: {
-          "Content-Type": "application/json",
-          ...(cookie ? { Cookie: cookie } : {}),
-        },
-        withCredentials: true,
-      }
+    const response = await callBackendApi(
+      request,
+      `/api/users/${userId}`,
+      "GET"
     );
-
     return NextResponse.json({
       success: true,
       data: response.data,
@@ -43,26 +36,14 @@ export async function PUT(
   { params }: { params: { userId: string } }
 ) {
   try {
-    console.log("00000");
-
     const { userId } = await params;
-    const cookie = request.headers.get("cookie");
     const body = await request.json();
-
-    const response = await axios.put(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/users/${userId}`,
-      body,
-      {
-        headers: {
-          "Content-Type": "application/json",
-          ...(cookie ? { Cookie: cookie } : {}),
-        },
-        withCredentials: true,
-      }
+    const response = await callBackendApi(
+      request,
+      `/api/users/${userId}`,
+      "PUT",
+      body
     );
-
-    console.log("1111111", response.data);
-
     return NextResponse.json({
       success: true,
       data: response.data,

@@ -1,3 +1,4 @@
+import { callBackendApi } from "@/lib/serverApi";
 import axios from "axios";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -5,19 +6,11 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
     const { email, password } = body;
-    const cookie = request.headers.get("cookie");
 
-    const response = await axios.post(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/auth/login`,
-      { email, password },
-      {
-        headers: {
-          "Content-Type": "application/json",
-          ...(cookie ? { Cookie: cookie } : {}),
-        },
-        withCredentials: true,
-      }
-    );
+    const response = await callBackendApi(request, "/api/auth/login", "POST", {
+      email,
+      password,
+    });
 
     const setCookie = response.headers["set-cookie"];
     const nextResponse = NextResponse.json(
