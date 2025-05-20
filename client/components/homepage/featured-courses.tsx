@@ -11,7 +11,8 @@ import { useCourses } from "@/hooks/course/use-courses";
 import { TrendingUp } from "lucide-react";
 import Link from "next/link";
 import { CourseGridSkeleton } from "../skeletons/course-grid-skeleton";
-import CourseCard from "./course-card";
+
+import FeaturedCourseCard from "./featured-course-card";
 
 const FeaturedCourses = () => {
   const { data, isLoading } = useCourses();
@@ -60,7 +61,7 @@ const FeaturedCourses = () => {
                   className="pl-1 basis-full sm:basis-1/2 lg:basis-1/3"
                 >
                   <div className="flex flex-col h-full p-1">
-                    <CourseCard {...course} isFeatured={true} />
+                    <FeaturedCourseCard {...course} isFeatured={true} />
                   </div>
                 </CarouselItem>
               ))}

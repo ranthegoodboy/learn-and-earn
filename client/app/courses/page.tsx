@@ -1,11 +1,13 @@
 "use client";
 
+import CourseOverview from "@/components/course-overview";
 import SearchFilters from "@/components/search/search-filters";
 import SearchInput from "@/components/search/search-input";
 import SearchPagination from "@/components/search/search-pagination";
 import SearchResultsGrid from "@/components/search/search-results-grid";
 import SearchSortToggle from "@/components/search/search-sort-toggle";
 import { useCourses } from "@/hooks/course/use-courses";
+import { useSearchParams } from "next/navigation";
 import { useQueryState } from "nuqs";
 
 const SearchResultsPage = () => {
@@ -26,6 +28,9 @@ const SearchResultsPage = () => {
     defaultValue: "1",
   });
 
+  const params = useSearchParams();
+  const selectedCourseId = params.get("courseId");
+
   const { data, isLoading } = useCourses(
     keyword || undefined,
     undefined,
@@ -38,6 +43,10 @@ const SearchResultsPage = () => {
 
   const courses = data?.data?.data || [];
   const pagination = data?.data?.pagination;
+
+  const selectedCourseInfo = courses.find(
+    (course) => course.id === selectedCourseId
+  );
 
   const handleSortByChange = (newSortBy: string) => {
     setSortBy(newSortBy);
@@ -56,6 +65,7 @@ const SearchResultsPage = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
         <div className="col-span-1 space-y-6">
+          <CourseOverview courseOverview={selectedCourseInfo} />
           <SearchFilters
             priceFilter={priceFilter || undefined}
             onPriceFilterChange={setPriceFilter}

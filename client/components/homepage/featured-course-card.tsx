@@ -7,7 +7,7 @@ import Link from "next/link";
 
 type courseCardProps = CourseOverview & { isFeatured?: boolean };
 
-const CourseCard = ({
+const FeaturedCourseCard = ({
   id,
   title,
   author,
@@ -92,4 +92,4 @@ const CourseCard = ({
   );
 };
 
-export default CourseCard;
+export default FeaturedCourseCard;
