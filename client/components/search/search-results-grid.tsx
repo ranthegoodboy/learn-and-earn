@@ -47,7 +47,7 @@ const SearchResultsGrid = ({ results, isLoading }: SearchResultsGridProps) => {
         <Card
           onClick={() => handleCardClick(course.id)}
           key={course.id}
-          className={`rounded-sm p-0 course-card overflow-hidden h-full flex flex-col border-gray-300 shadow-md cursor-pointer ${
+          className={`gap-0 rounded-sm p-0 course-card overflow-hidden h-full flex flex-col border-gray-300 shadow-md cursor-pointer ${
             courseId === course.id
               ? "ring-4 ring-secondary shadow-xl transition-all duration-300 shadow-secondary/50"
               : ""
@@ -62,32 +62,36 @@ const SearchResultsGrid = ({ results, isLoading }: SearchResultsGridProps) => {
               height={200}
               priority
             />
-            <div className="absolute top-3 left-3 text-sm text-white bg-black/60 px-2 py-1 rounded">
-              By {course.author.name} | {course.category}
-            </div>
           </div>
 
-          <CardContent className="px-5 py-4 flex-grow">
-            <h3 className="text-xl font-semibold mb-3">{course.title}</h3>
-            <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
+          <CardContent className="p-5 flex-grow">
+            <div className="flex justify-between items-center mb-3">
+              <span className="bg-muted text-muted-foreground px-2 py-1 rounded text-xs font-medium">
+                {course.category}
+              </span>
+              <div className="flex items-center gap-1">
+                <span className="text-amber-500">★</span>
+                <span className="text-sm font-medium">{5}</span>
+              </div>
+            </div>
+
+            <h3 className="text-lg font-semibold mb-2">{course.title}</h3>
+
+            <p className="text-sm text-muted-foreground mb-2">
+              by <span className="font-medium">{course.author.name}</span>
+            </p>
+
+            <p className="text-sm text-foreground/80 line-clamp-2 mb-2">
               {course.description}
             </p>
 
-            <div className="space-y-1 mb-3">
-              <h4 className="text-sm font-medium mb-2">Course Content</h4>
-              {course.sections.slice(0, 3).map((section, index) => (
-                <div key={index} className="flex items-center gap-2 text-sm">
-                  <div className="w-5 h-5 flex items-center justify-center bg-muted rounded-full text-xs">
-                    {index + 1}
-                  </div>
-                  <span className="truncate">{section.sectionTitle}</span>
-                </div>
-              ))}
-              {course.sections.length > 3 && (
-                <div className="text-xs text-muted-foreground pl-7">
-                  +{course.sections.length - 3} more sections
-                </div>
-              )}
+            <div className="text-sm text-muted-foreground">
+              {course.sections.length} sections{" "}
+              {course.sections.reduce(
+                (acc, section) => acc + section.chapters.length,
+                0
+              )}{" "}
+              chapters
             </div>
           </CardContent>
 

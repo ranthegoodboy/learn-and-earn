@@ -107,7 +107,7 @@ export function NavUser() {
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
-              <Logout>
+              <Logout redirectUrl="/">
                 <Button
                   variant={"ghost"}
                   className="p-0 hover:bg-transparent"

@@ -20,7 +20,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { DEFAULT_LOGIN_ROUTE } from "@/config/routes";
+
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 
@@ -44,7 +44,7 @@ const formSchema = z
     path: ["confirmPassword"],
   });
 
-export function RegisterForm() {
+export function RegisterForm({ redirectUrl }: { redirectUrl: string }) {
   const queryClient = useQueryClient();
   const [isPending, startTransition] = useTransition();
   const [showPassword, setShowPassword] = useState(false);
@@ -84,7 +84,9 @@ export function RegisterForm() {
         if (res.ok) {
           queryClient.invalidateQueries({ queryKey: ["auth-status"] });
           toast.success("Account created successfully.", { duration: 4000 });
-          router.push(DEFAULT_LOGIN_ROUTE);
+          if (redirectUrl) {
+            router.push(redirectUrl);
+          }
         } else {
           const data = await res.json();
           setApiError(data.message || "Registration failed. Please try again.");

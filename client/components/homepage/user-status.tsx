@@ -47,7 +47,7 @@ export function UserStatus() {
             <Link href="/subscription">Subscription</Link>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <Logout>Logout</Logout>
+            <Logout redirectUrl="/">Logout</Logout>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

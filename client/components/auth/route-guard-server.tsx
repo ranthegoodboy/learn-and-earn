@@ -35,7 +35,6 @@ export default async function RouteGuardServer({
   children: React.ReactNode;
 }) {
   const isAuthenticated = await checkAuth();
-  console.log("isAuthenticated", isAuthenticated);
 
   if (!isAuthenticated) {
     redirect(DEFAULT_LOGIN_ROUTE);

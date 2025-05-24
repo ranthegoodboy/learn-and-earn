@@ -48,7 +48,6 @@ export const updateUserProfile = async (
   const { userId } = req.params;
   const { name, about, experiences, education, image } = req.body;
 
-  console.log("reqqqq", req.body);
   const errors = validationResult(req);
 
   if (!errors.isEmpty()) {

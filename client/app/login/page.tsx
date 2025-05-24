@@ -1,14 +1,4 @@
-import { LoginForm } from "@/components/auth/login-form";
-
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import Link from "next/link";
+import LoginComponent from "@/components/auth/login-component";
 
 const LoginPage = () => {
   return (
@@ -20,26 +10,7 @@ const LoginPage = () => {
             Sign in to continue your learning journey
           </p>
         </div>
-
-        <Card className="w-full">
-          <CardHeader>
-            <CardTitle>Sign in</CardTitle>
-            <CardDescription>
-              Enter your credentials to access your account
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <LoginForm />
-          </CardContent>
-          <CardFooter className="flex flex-col space-y-4">
-            <div className="text-center text-sm">
-              {`Don't have an account? `}
-              <Link href="/register" className="text-secondary hover:underline">
-                Sign up
-              </Link>
-            </div>
-          </CardFooter>
-        </Card>
+        <LoginComponent />
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 "use client";
 
-import CourseOverview from "@/components/course-overview";
+import CourseOverview from "@/components/checkout/course-overview-card";
 import SearchFilters from "@/components/search/search-filters";
 import SearchInput from "@/components/search/search-input";
 import SearchPagination from "@/components/search/search-pagination";
@@ -55,17 +55,12 @@ const SearchResultsPage = () => {
   return (
     <div className="container py-8">
       <div className="flex items-center justify-between mb-8">
-        <h1 className="text-2xl font-bold">Search Results</h1>
         <SearchInput
           keyword={keyword || undefined}
           setKeyword={setKeyword}
           setCurrentPage={setCurrentPage}
         />
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-        <div className="col-span-1 space-y-6">
-          <CourseOverview courseOverview={selectedCourseInfo} />
+        <div className="md:flex items-center gap-2">
           <SearchFilters
             priceFilter={priceFilter || undefined}
             onPriceFilterChange={setPriceFilter}
@@ -75,38 +70,42 @@ const SearchResultsPage = () => {
             onRatingChange={setRating}
             setCurrentPage={setCurrentPage}
           />
+          <SearchSortToggle
+            sortBy={sortBy || undefined}
+            onSortChange={handleSortByChange}
+          />
         </div>
+      </div>
 
-        {!data?.success && !isLoading ? (
-          <div className="col-span-1 md:col-span-3">
-            Something went wrong. Please refresh the page.
-          </div>
-        ) : (
-          <div className="col-span-1 md:col-span-3">
-            <div className="flex items-center justify-between mb-4">
-              <p className="text-sm text-muted-foreground">
-                {pagination?.total} courses found{" "}
-                {keyword && `for "${keyword}"`}
-              </p>
-              <div className="hidden md:block">
-                <SearchSortToggle
-                  sortBy={sortBy || undefined}
-                  onSortChange={handleSortByChange}
-                />
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="col-span-1 space-y-6 order-1 md:order-last">
+          <CourseOverview courseOverview={selectedCourseInfo} />
+        </div>
+        <div className="col-span-1 md:col-span-2 order-last md:order-1">
+          {!data?.success && !isLoading ? (
+            <div className="">
+              Something went wrong. Please refresh the page.
+            </div>
+          ) : (
+            <div className="col-span-1 md:col-span-2">
+              <SearchResultsGrid results={courses} isLoading={isLoading} />
+
+              <div className="flex justify-between mt-6 items-center">
+                <div className="text-sm text-muted-foreground w-full">
+                  {pagination?.total} courses found{" "}
+                  {keyword && `for "${keyword}"`}
+                </div>
+                {pagination && (
+                  <SearchPagination
+                    currentPage={parseInt(currentPage || "1")}
+                    totalPages={pagination?.totalPages}
+                    onPageChange={setCurrentPage}
+                  />
+                )}
               </div>
             </div>
-
-            <SearchResultsGrid results={courses} isLoading={isLoading} />
-
-            {pagination && (
-              <SearchPagination
-                currentPage={parseInt(currentPage || "1")}
-                totalPages={pagination?.totalPages}
-                onPageChange={setCurrentPage}
-              />
-            )}
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </div>
   );

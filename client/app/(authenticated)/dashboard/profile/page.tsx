@@ -82,7 +82,6 @@ export default function ProfilePage() {
   }, [userProfile, form]);
 
   const onSubmit = async (data: ProfileFormValues) => {
-    console.log("data", data);
     if (!userId) return;
 
     const updatedData = {

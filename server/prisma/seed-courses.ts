@@ -22,7 +22,6 @@ async function seedCourses() {
           requirements: course.requirements,
           targetAudience: course.targetAudience,
           language: course.language,
-          enrollments: course.enrollments,
           analytics: course.analytics,
           createdAt: course.createdAt,
           updatedAt: course.updatedAt,

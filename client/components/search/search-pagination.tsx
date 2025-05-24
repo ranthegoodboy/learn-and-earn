@@ -117,7 +117,7 @@ const SearchPagination = ({
   };
 
   return (
-    <Pagination className="mt-8">
+    <Pagination className="flex justify-end">
       <PaginationContent>
         <PaginationItem>
           <PaginationPrevious

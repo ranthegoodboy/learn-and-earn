@@ -155,12 +155,19 @@ exports.Prisma.CourseScalarFieldEnum = {
   requirements: 'requirements',
   targetAudience: 'targetAudience',
   language: 'language',
-  enrollments: 'enrollments',
   analytics: 'analytics',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   userId: 'userId',
   embeddings: 'embeddings'
+};
+
+exports.Prisma.EnrollmentScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  courseId: 'courseId',
+  userId: 'userId'
 };
 
 exports.Prisma.SectionScalarFieldEnum = {
@@ -192,8 +199,8 @@ exports.Prisma.CommentScalarFieldEnum = {
 
 exports.Prisma.TransactionScalarFieldEnum = {
   id: 'id',
-  dateTime: 'dateTime',
   paymentProvider: 'paymentProvider',
+  transactionId: 'transactionId',
   amount: 'amount',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
@@ -246,6 +253,7 @@ exports.Prisma.ModelName = {
   User: 'User',
   Account: 'Account',
   Course: 'Course',
+  Enrollment: 'Enrollment',
   Section: 'Section',
   Chapter: 'Chapter',
   Comment: 'Comment',

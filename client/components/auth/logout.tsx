@@ -9,9 +9,10 @@ import { toast } from "sonner";
 
 interface LogoutProps {
   children: ReactNode;
+  redirectUrl: string;
 }
 
-export function Logout({ children }: LogoutProps) {
+export function Logout({ children, redirectUrl }: LogoutProps) {
   const queryClient = useQueryClient();
   const router = useRouter();
   const clearUser = useAuthStore((state) => state.clearUser);
@@ -22,7 +23,7 @@ export function Logout({ children }: LogoutProps) {
     if (res.data.success) {
       clearUser();
       queryClient.invalidateQueries({ queryKey: ["auth-status"] });
-      router.push("/");
+      router.push(redirectUrl);
       toast.success("Logged out successfully.");
     } else {
       toast.error("Failed to logout.");

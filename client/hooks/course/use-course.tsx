@@ -7,7 +7,7 @@ export function useCourse(courseId: string) {
     queryKey: ["course", courseId],
     queryFn: async () => {
       const response = await api.get(`/course/${courseId}`);
-      return response.data.data;
+      return response.data;
     },
     enabled: !!courseId,
   });

@@ -10,7 +10,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { DEFAULT_LOGIN_REDIRECT } from "@/config/routes";
+
 import api from "@/services/api";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useQueryClient } from "@tanstack/react-query";
@@ -27,7 +27,7 @@ const formSchema = z.object({
   password: z.string().min(1, { message: "Password is required." }),
 });
 
-export function LoginForm() {
+export function LoginForm({ redirectUrl }: { redirectUrl: string }) {
   const queryClient = useQueryClient();
   const [isPending, startTransition] = useTransition();
   const [showPassword, setShowPassword] = useState(false);
@@ -52,7 +52,7 @@ export function LoginForm() {
 
       if (res.data.success) {
         queryClient.invalidateQueries({ queryKey: ["auth-status"] });
-        router.push(DEFAULT_LOGIN_REDIRECT);
+        router.push(redirectUrl);
       } else {
         setApiError(res.data.error);
       }

@@ -1,16 +1,4 @@
-"use client";
-
-import { RegisterForm } from "@/components/auth/register-form";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { DEFAULT_LOGIN_ROUTE } from "@/config/routes";
-import Link from "next/link";
+import RegisterComponent from "@/components/auth/register-component";
 
 const RegisterPage = () => {
   return (
@@ -24,35 +12,7 @@ const RegisterPage = () => {
             Join thousands of learners from around the world
           </p>
         </div>
-
-        <Card className="w-full">
-          <CardHeader>
-            <CardTitle>Sign up</CardTitle>
-            <CardDescription>
-              Enter your information to create an account
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <RegisterForm />
-          </CardContent>
-          <CardFooter className="flex flex-col space-y-4">
-            <div className="relative w-full">
-              <div className="absolute inset-0 flex items-center">
-                <span className="w-full border-t"></span>
-              </div>
-            </div>
-
-            <div className="text-center text-sm">
-              Already have an account?{" "}
-              <Link
-                href={DEFAULT_LOGIN_ROUTE}
-                className="text-secondary hover:underline"
-              >
-                Sign in
-              </Link>
-            </div>
-          </CardFooter>
-        </Card>
+        <RegisterComponent />
       </div>
     </div>
   );

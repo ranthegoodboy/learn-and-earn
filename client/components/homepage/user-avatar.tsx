@@ -36,7 +36,7 @@ export function UserAvatar() {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuItem>
-          <Logout>Logout</Logout>
+          <Logout redirectUrl="/">Logout</Logout>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

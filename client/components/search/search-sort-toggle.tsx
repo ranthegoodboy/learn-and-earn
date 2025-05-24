@@ -1,5 +1,11 @@
 "use client";
-import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 interface SearchSortToggleProps {
   sortBy: string | undefined;
@@ -8,25 +14,20 @@ interface SearchSortToggleProps {
 
 const SearchSortToggle = ({ sortBy, onSortChange }: SearchSortToggleProps) => {
   return (
-    <ToggleGroup
-      className="bg-secondary text-white"
-      type="single"
+    <Select
+      defaultValue="newest"
       value={sortBy}
-      onValueChange={(value) => value && onSortChange(value)}
+      onValueChange={(value) => onSortChange(value)}
     >
-      <ToggleGroupItem
-        value="newest"
-        className="max-w-fit cursor-pointer hover:bg-accent"
-      >
-        Newest
-      </ToggleGroupItem>
-      <ToggleGroupItem value="price_asc" className="max-w-fit cursor-pointer">
-        Price: Low to High
-      </ToggleGroupItem>
-      <ToggleGroupItem value="price_desc" className="max-w-fit cursor-pointer">
-        Price: High to Low
-      </ToggleGroupItem>
-    </ToggleGroup>
+      <SelectTrigger className="w-[180px]">
+        <SelectValue placeholder="Sort by" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectItem value="newest">Newest</SelectItem>
+        <SelectItem value="price_asc">Price: Low to High</SelectItem>
+        <SelectItem value="price_desc">Price: High to Low</SelectItem>
+      </SelectContent>
+    </Select>
   );
 };
 
