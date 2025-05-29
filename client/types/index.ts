@@ -121,3 +121,18 @@ export type UserProfile = {
   createdAt: Date;
   updatedAt: Date;
 };
+
+export type UserBillingTransaction = {
+  courseId: string;
+  createdAt: Date;
+  amount: number;
+  id: string;
+  paymentProvider: string;
+  transactionId: string;
+  updatedAt: Date;
+  userId: string;
+  course: {
+    id: string;
+    title: string;
+  };
+};

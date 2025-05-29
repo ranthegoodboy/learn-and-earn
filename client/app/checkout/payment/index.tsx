@@ -58,7 +58,7 @@ const PaymentPageContent = () => {
         amount: course.price,
       };
 
-      const response = await api.post("/transaction", payload);
+      const response = await api.post("/transactions", payload);
 
       if (response.data.success) {
         navigateToStep(3);

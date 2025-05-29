@@ -47,6 +47,12 @@ export const dashboardNavigationItems: NonCollapsibleNavigationType = {
       isActive: true,
     },
     {
+      title: "Billings",
+      url: "/dashboard/billings",
+      icon: GraduationCap,
+      isActive: true,
+    },
+    {
       title: "Analytics",
       url: "/dashboard/analytics",
       icon: BarChart2,

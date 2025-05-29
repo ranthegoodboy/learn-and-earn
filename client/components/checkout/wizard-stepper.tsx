@@ -37,9 +37,7 @@ const WizardStepper = ({ currentStep, className }: WizardStepperProps) => {
 
           return (
             <React.Fragment key={step.id}>
-              {/* Step */}
               <div className="flex flex-col items-center">
-                {/* Icon Circle */}
                 <div
                   className={cn(
                     "relative flex h-10 w-10 items-center justify-center rounded-full border-2 transition-all duration-200",
@@ -59,7 +57,6 @@ const WizardStepper = ({ currentStep, className }: WizardStepperProps) => {
                   )}
                 </div>
 
-                {/* Label */}
                 <span
                   className={cn("mt-2 text-sm font-medium", {
                     "text-primary": isActive,
@@ -69,8 +66,6 @@ const WizardStepper = ({ currentStep, className }: WizardStepperProps) => {
                   {step.label}
                 </span>
               </div>
-
-              {/* Connector Line (except after last step) */}
               {index < steps.length - 1 && (
                 <div className="flex-1 flex items-center justify-center">
                   <div

@@ -100,8 +100,8 @@ export const createTransaction = async (
       data: purchaseTransaction,
     });
   } catch (error) {
-    console.error("", error);
-    res.status(500).json({ message: "", error });
+    console.error("Error while purchasing course", error);
+    res.status(500).json({ message: "Error while purchasing course", error });
   }
 };
 
@@ -109,15 +109,37 @@ export const getTransactions = async (
   req: Request,
   res: Response
 ): Promise<void> => {
-  const { userId, courseId, transactionId, amount, paymentProvider } = req.body;
+  const { userId } = req.query;
 
   try {
+    const user = await db.user.findUnique({
+      where: {
+        id: userId as string,
+      },
+    });
+    if (!user) {
+      res.status(404).json({
+        message: "User not found",
+        data: "",
+      });
+    }
+
+    const transactions = await db.transaction.findMany({
+      where: {
+        userId: userId as string,
+      },
+      include: {
+        course: true,
+      },
+    });
     res.status(200).json({
-      message: "",
-      data: "",
+      message: "Get transactions successfully",
+      data: transactions,
     });
   } catch (error) {
-    console.error("", error);
-    res.status(500).json({ message: "", error });
+    console.error("Error while getting transactions", error);
+    res
+      .status(500)
+      .json({ message: "Error while getting transactions", error });
   }
 };
