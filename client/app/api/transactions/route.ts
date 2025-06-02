@@ -1,4 +1,4 @@
-import { callBackendApi } from "@/lib/serverApi";
+import { callBackendApi } from "@/lib/call-backend-api";
 import axios from "axios";
 import { NextRequest, NextResponse } from "next/server";
 

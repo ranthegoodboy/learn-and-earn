@@ -1,13 +1,16 @@
 import bodyParser from "body-parser";
 import MongoStore from "connect-mongo";
 import cors from "cors";
+import csurf from "csurf";
 import dotenv from "dotenv";
-import express from "express";
+import express, { ErrorRequestHandler, Request, Response } from "express";
 import rateLimit from "express-rate-limit";
 import session from "express-session";
 import helmet from "helmet";
 import morgan from "morgan";
 import passport from "passport";
+import { csrfErrorHandler } from "./middleware/csrf-error-handler";
+import { errorHandler } from "./middleware/error-handler";
 import authRoutes from "./routes/authRoutes";
 import courseRoutes from "./routes/courseRoutes";
 import transactionRoutes from "./routes/transactionRoutes";
@@ -67,10 +70,22 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+// CSRF protection (must come after session and before routes)
+const csrfProtection = csurf({ cookie: false });
+app.use(csrfProtection);
+
+// Route to get CSRF token (frontend should call this and use the token in requests)
+app.get("/api/csrf-token", (req: Request, res: Response) => {
+  res.json({ csrfToken: (req as any).csrfToken() });
+});
+
 app.use("/api/courses", courseRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/transactions", transactionRoutes);
+
+app.use(csrfErrorHandler as ErrorRequestHandler);
+app.use(errorHandler);
 
 const port = process.env.PORT || 3001;
 if (!isProduction) {
