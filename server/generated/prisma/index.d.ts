@@ -4408,7 +4408,6 @@ export namespace Prisma {
     requirements: number
     targetAudience: number
     language: number
-    analytics: number
     createdAt: number
     updatedAt: number
     userId: number
@@ -4470,7 +4469,6 @@ export namespace Prisma {
     requirements?: true
     targetAudience?: true
     language?: true
-    analytics?: true
     createdAt?: true
     updatedAt?: true
     userId?: true
@@ -4577,7 +4575,6 @@ export namespace Prisma {
     requirements: string[]
     targetAudience: string[]
     language: string
-    analytics: JsonValue
     createdAt: Date
     updatedAt: Date
     userId: string
@@ -4616,7 +4613,6 @@ export namespace Prisma {
     requirements?: boolean
     targetAudience?: boolean
     language?: boolean
-    analytics?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
@@ -4644,14 +4640,13 @@ export namespace Prisma {
     requirements?: boolean
     targetAudience?: boolean
     language?: boolean
-    analytics?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
     embeddings?: boolean
   }
 
-  export type CourseOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "category" | "image" | "price" | "level" | "isPublished" | "whatYouLearn" | "requirements" | "targetAudience" | "language" | "analytics" | "createdAt" | "updatedAt" | "userId" | "embeddings", ExtArgs["result"]["course"]>
+  export type CourseOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "category" | "image" | "price" | "level" | "isPublished" | "whatYouLearn" | "requirements" | "targetAudience" | "language" | "createdAt" | "updatedAt" | "userId" | "embeddings", ExtArgs["result"]["course"]>
   export type CourseInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     sections?: boolean | Course$sectionsArgs<ExtArgs>
     transactions?: boolean | Course$transactionsArgs<ExtArgs>
@@ -4683,7 +4678,6 @@ export namespace Prisma {
       requirements: string[]
       targetAudience: string[]
       language: string
-      analytics: Prisma.JsonValue
       createdAt: Date
       updatedAt: Date
       userId: string
@@ -5097,7 +5091,6 @@ export namespace Prisma {
     readonly requirements: FieldRef<"Course", 'String[]'>
     readonly targetAudience: FieldRef<"Course", 'String[]'>
     readonly language: FieldRef<"Course", 'String'>
-    readonly analytics: FieldRef<"Course", 'Json'>
     readonly createdAt: FieldRef<"Course", 'DateTime'>
     readonly updatedAt: FieldRef<"Course", 'DateTime'>
     readonly userId: FieldRef<"Course", 'String'>
@@ -8847,7 +8840,7 @@ export namespace Prisma {
     userId?: boolean
     chapterId?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
-    chapters?: boolean | ChapterDefaultArgs<ExtArgs>
+    chapter?: boolean | ChapterDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["comment"]>
 
 
@@ -8863,14 +8856,14 @@ export namespace Prisma {
   export type CommentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "text" | "timestamp" | "userId" | "chapterId", ExtArgs["result"]["comment"]>
   export type CommentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
-    chapters?: boolean | ChapterDefaultArgs<ExtArgs>
+    chapter?: boolean | ChapterDefaultArgs<ExtArgs>
   }
 
   export type $CommentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Comment"
     objects: {
       user: Prisma.$UserPayload<ExtArgs>
-      chapters: Prisma.$ChapterPayload<ExtArgs>
+      chapter: Prisma.$ChapterPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -9242,7 +9235,7 @@ export namespace Prisma {
   export interface Prisma__CommentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    chapters<T extends ChapterDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ChapterDefaultArgs<ExtArgs>>): Prisma__ChapterClient<$Result.GetResult<Prisma.$ChapterPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    chapter<T extends ChapterDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ChapterDefaultArgs<ExtArgs>>): Prisma__ChapterClient<$Result.GetResult<Prisma.$ChapterPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -13884,7 +13877,6 @@ export namespace Prisma {
     requirements: 'requirements',
     targetAudience: 'targetAudience',
     language: 'language',
-    analytics: 'analytics',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
     userId: 'userId',
@@ -14085,13 +14077,6 @@ export namespace Prisma {
    * Reference to a field of type 'Boolean'
    */
   export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
-    
-
-
-  /**
-   * Reference to a field of type 'Json'
-   */
-  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
     
   /**
    * Deep Input Types
@@ -14322,7 +14307,6 @@ export namespace Prisma {
     requirements?: StringNullableListFilter<"Course">
     targetAudience?: StringNullableListFilter<"Course">
     language?: StringFilter<"Course"> | string
-    analytics?: JsonFilter<"Course">
     createdAt?: DateTimeFilter<"Course"> | Date | string
     updatedAt?: DateTimeFilter<"Course"> | Date | string
     userId?: StringFilter<"Course"> | string
@@ -14347,7 +14331,6 @@ export namespace Prisma {
     requirements?: SortOrder
     targetAudience?: SortOrder
     language?: SortOrder
-    analytics?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
@@ -14375,7 +14358,6 @@ export namespace Prisma {
     requirements?: StringNullableListFilter<"Course">
     targetAudience?: StringNullableListFilter<"Course">
     language?: StringFilter<"Course"> | string
-    analytics?: JsonFilter<"Course">
     createdAt?: DateTimeFilter<"Course"> | Date | string
     updatedAt?: DateTimeFilter<"Course"> | Date | string
     userId?: StringFilter<"Course"> | string
@@ -14400,7 +14382,6 @@ export namespace Prisma {
     requirements?: SortOrder
     targetAudience?: SortOrder
     language?: SortOrder
-    analytics?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
@@ -14428,7 +14409,6 @@ export namespace Prisma {
     requirements?: StringNullableListFilter<"Course">
     targetAudience?: StringNullableListFilter<"Course">
     language?: StringWithAggregatesFilter<"Course"> | string
-    analytics?: JsonWithAggregatesFilter<"Course">
     createdAt?: DateTimeWithAggregatesFilter<"Course"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Course"> | Date | string
     userId?: StringWithAggregatesFilter<"Course"> | string
@@ -14639,7 +14619,7 @@ export namespace Prisma {
     userId?: StringFilter<"Comment"> | string
     chapterId?: StringFilter<"Comment"> | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
-    chapters?: XOR<ChapterScalarRelationFilter, ChapterWhereInput>
+    chapter?: XOR<ChapterScalarRelationFilter, ChapterWhereInput>
   }
 
   export type CommentOrderByWithRelationInput = {
@@ -14649,7 +14629,7 @@ export namespace Prisma {
     userId?: SortOrder
     chapterId?: SortOrder
     user?: UserOrderByWithRelationInput
-    chapters?: ChapterOrderByWithRelationInput
+    chapter?: ChapterOrderByWithRelationInput
   }
 
   export type CommentWhereUniqueInput = Prisma.AtLeast<{
@@ -14662,7 +14642,7 @@ export namespace Prisma {
     userId?: StringFilter<"Comment"> | string
     chapterId?: StringFilter<"Comment"> | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
-    chapters?: XOR<ChapterScalarRelationFilter, ChapterWhereInput>
+    chapter?: XOR<ChapterScalarRelationFilter, ChapterWhereInput>
   }, "id">
 
   export type CommentOrderByWithAggregationInput = {
@@ -15200,12 +15180,11 @@ export namespace Prisma {
     image: string
     price: number
     level?: $Enums.Level
-    isPublished: boolean
+    isPublished?: boolean
     whatYouLearn?: CourseCreatewhatYouLearnInput | string[]
     requirements?: CourseCreaterequirementsInput | string[]
     targetAudience?: CourseCreatetargetAudienceInput | string[]
     language: string
-    analytics: InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
     embeddings?: CourseCreateembeddingsInput | number[]
@@ -15224,12 +15203,11 @@ export namespace Prisma {
     image: string
     price: number
     level?: $Enums.Level
-    isPublished: boolean
+    isPublished?: boolean
     whatYouLearn?: CourseCreatewhatYouLearnInput | string[]
     requirements?: CourseCreaterequirementsInput | string[]
     targetAudience?: CourseCreatetargetAudienceInput | string[]
     language: string
-    analytics: InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: string
@@ -15252,7 +15230,6 @@ export namespace Prisma {
     requirements?: CourseUpdaterequirementsInput | string[]
     targetAudience?: CourseUpdatetargetAudienceInput | string[]
     language?: StringFieldUpdateOperationsInput | string
-    analytics?: InputJsonValue | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     embeddings?: CourseUpdateembeddingsInput | number[]
@@ -15275,7 +15252,6 @@ export namespace Prisma {
     requirements?: CourseUpdaterequirementsInput | string[]
     targetAudience?: CourseUpdatetargetAudienceInput | string[]
     language?: StringFieldUpdateOperationsInput | string
-    analytics?: InputJsonValue | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: StringFieldUpdateOperationsInput | string
@@ -15294,12 +15270,11 @@ export namespace Prisma {
     image: string
     price: number
     level?: $Enums.Level
-    isPublished: boolean
+    isPublished?: boolean
     whatYouLearn?: CourseCreatewhatYouLearnInput | string[]
     requirements?: CourseCreaterequirementsInput | string[]
     targetAudience?: CourseCreatetargetAudienceInput | string[]
     language: string
-    analytics: InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: string
@@ -15318,7 +15293,6 @@ export namespace Prisma {
     requirements?: CourseUpdaterequirementsInput | string[]
     targetAudience?: CourseUpdatetargetAudienceInput | string[]
     language?: StringFieldUpdateOperationsInput | string
-    analytics?: InputJsonValue | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     embeddings?: CourseUpdateembeddingsInput | number[]
@@ -15336,7 +15310,6 @@ export namespace Prisma {
     requirements?: CourseUpdaterequirementsInput | string[]
     targetAudience?: CourseUpdatetargetAudienceInput | string[]
     language?: StringFieldUpdateOperationsInput | string
-    analytics?: InputJsonValue | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: StringFieldUpdateOperationsInput | string
@@ -15450,7 +15423,7 @@ export namespace Prisma {
     videoUrl: string
     videoUniqueId: string
     videoType: string
-    comments?: CommentCreateNestedManyWithoutChaptersInput
+    comments?: CommentCreateNestedManyWithoutChapterInput
     Section: SectionCreateNestedOneWithoutChaptersInput
     UserCourseProgress?: UserCourseProgressCreateNestedManyWithoutChapterInput
   }
@@ -15465,7 +15438,7 @@ export namespace Prisma {
     videoUniqueId: string
     videoType: string
     sectionId: string
-    comments?: CommentUncheckedCreateNestedManyWithoutChaptersInput
+    comments?: CommentUncheckedCreateNestedManyWithoutChapterInput
     UserCourseProgress?: UserCourseProgressUncheckedCreateNestedManyWithoutChapterInput
   }
 
@@ -15477,7 +15450,7 @@ export namespace Prisma {
     videoUrl?: StringFieldUpdateOperationsInput | string
     videoUniqueId?: StringFieldUpdateOperationsInput | string
     videoType?: StringFieldUpdateOperationsInput | string
-    comments?: CommentUpdateManyWithoutChaptersNestedInput
+    comments?: CommentUpdateManyWithoutChapterNestedInput
     Section?: SectionUpdateOneRequiredWithoutChaptersNestedInput
     UserCourseProgress?: UserCourseProgressUpdateManyWithoutChapterNestedInput
   }
@@ -15491,7 +15464,7 @@ export namespace Prisma {
     videoUniqueId?: StringFieldUpdateOperationsInput | string
     videoType?: StringFieldUpdateOperationsInput | string
     sectionId?: StringFieldUpdateOperationsInput | string
-    comments?: CommentUncheckedUpdateManyWithoutChaptersNestedInput
+    comments?: CommentUncheckedUpdateManyWithoutChapterNestedInput
     UserCourseProgress?: UserCourseProgressUncheckedUpdateManyWithoutChapterNestedInput
   }
 
@@ -15533,7 +15506,7 @@ export namespace Prisma {
     text: string
     timestamp?: Date | string
     user: UserCreateNestedOneWithoutCommentsInput
-    chapters: ChapterCreateNestedOneWithoutCommentsInput
+    chapter: ChapterCreateNestedOneWithoutCommentsInput
   }
 
   export type CommentUncheckedCreateInput = {
@@ -15548,7 +15521,7 @@ export namespace Prisma {
     text?: StringFieldUpdateOperationsInput | string
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutCommentsNestedInput
-    chapters?: ChapterUpdateOneRequiredWithoutCommentsNestedInput
+    chapter?: ChapterUpdateOneRequiredWithoutCommentsNestedInput
   }
 
   export type CommentUncheckedUpdateInput = {
@@ -16171,17 +16144,6 @@ export namespace Prisma {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
     not?: NestedBoolFilter<$PrismaModel> | boolean
   }
-  export type JsonFilter<$PrismaModel = never> =
-    | PatchUndefined<
-        Either<Required<JsonFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonFilterBase<$PrismaModel>>, 'path'>>,
-        Required<JsonFilterBase<$PrismaModel>>
-      >
-    | OptionalFlat<Omit<Required<JsonFilterBase<$PrismaModel>>, 'path'>>
-
-  export type JsonFilterBase<$PrismaModel = never> = {
-    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-  }
 
   export type FloatNullableListFilter<$PrismaModel = never> = {
     equals?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
@@ -16214,7 +16176,6 @@ export namespace Prisma {
     requirements?: SortOrder
     targetAudience?: SortOrder
     language?: SortOrder
-    analytics?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
@@ -16293,20 +16254,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
-  }
-  export type JsonWithAggregatesFilter<$PrismaModel = never> =
-    | PatchUndefined<
-        Either<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
-        Required<JsonWithAggregatesFilterBase<$PrismaModel>>
-      >
-    | OptionalFlat<Omit<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
-
-  export type JsonWithAggregatesFilterBase<$PrismaModel = never> = {
-    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedJsonFilter<$PrismaModel>
-    _max?: NestedJsonFilter<$PrismaModel>
   }
 
   export type CourseScalarRelationFilter = {
@@ -17246,10 +17193,10 @@ export namespace Prisma {
     deleteMany?: ChapterScalarWhereInput | ChapterScalarWhereInput[]
   }
 
-  export type CommentCreateNestedManyWithoutChaptersInput = {
-    create?: XOR<CommentCreateWithoutChaptersInput, CommentUncheckedCreateWithoutChaptersInput> | CommentCreateWithoutChaptersInput[] | CommentUncheckedCreateWithoutChaptersInput[]
-    connectOrCreate?: CommentCreateOrConnectWithoutChaptersInput | CommentCreateOrConnectWithoutChaptersInput[]
-    createMany?: CommentCreateManyChaptersInputEnvelope
+  export type CommentCreateNestedManyWithoutChapterInput = {
+    create?: XOR<CommentCreateWithoutChapterInput, CommentUncheckedCreateWithoutChapterInput> | CommentCreateWithoutChapterInput[] | CommentUncheckedCreateWithoutChapterInput[]
+    connectOrCreate?: CommentCreateOrConnectWithoutChapterInput | CommentCreateOrConnectWithoutChapterInput[]
+    createMany?: CommentCreateManyChapterInputEnvelope
     connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
   }
 
@@ -17266,10 +17213,10 @@ export namespace Prisma {
     connect?: UserCourseProgressWhereUniqueInput | UserCourseProgressWhereUniqueInput[]
   }
 
-  export type CommentUncheckedCreateNestedManyWithoutChaptersInput = {
-    create?: XOR<CommentCreateWithoutChaptersInput, CommentUncheckedCreateWithoutChaptersInput> | CommentCreateWithoutChaptersInput[] | CommentUncheckedCreateWithoutChaptersInput[]
-    connectOrCreate?: CommentCreateOrConnectWithoutChaptersInput | CommentCreateOrConnectWithoutChaptersInput[]
-    createMany?: CommentCreateManyChaptersInputEnvelope
+  export type CommentUncheckedCreateNestedManyWithoutChapterInput = {
+    create?: XOR<CommentCreateWithoutChapterInput, CommentUncheckedCreateWithoutChapterInput> | CommentCreateWithoutChapterInput[] | CommentUncheckedCreateWithoutChapterInput[]
+    connectOrCreate?: CommentCreateOrConnectWithoutChapterInput | CommentCreateOrConnectWithoutChapterInput[]
+    createMany?: CommentCreateManyChapterInputEnvelope
     connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
   }
 
@@ -17280,17 +17227,17 @@ export namespace Prisma {
     connect?: UserCourseProgressWhereUniqueInput | UserCourseProgressWhereUniqueInput[]
   }
 
-  export type CommentUpdateManyWithoutChaptersNestedInput = {
-    create?: XOR<CommentCreateWithoutChaptersInput, CommentUncheckedCreateWithoutChaptersInput> | CommentCreateWithoutChaptersInput[] | CommentUncheckedCreateWithoutChaptersInput[]
-    connectOrCreate?: CommentCreateOrConnectWithoutChaptersInput | CommentCreateOrConnectWithoutChaptersInput[]
-    upsert?: CommentUpsertWithWhereUniqueWithoutChaptersInput | CommentUpsertWithWhereUniqueWithoutChaptersInput[]
-    createMany?: CommentCreateManyChaptersInputEnvelope
+  export type CommentUpdateManyWithoutChapterNestedInput = {
+    create?: XOR<CommentCreateWithoutChapterInput, CommentUncheckedCreateWithoutChapterInput> | CommentCreateWithoutChapterInput[] | CommentUncheckedCreateWithoutChapterInput[]
+    connectOrCreate?: CommentCreateOrConnectWithoutChapterInput | CommentCreateOrConnectWithoutChapterInput[]
+    upsert?: CommentUpsertWithWhereUniqueWithoutChapterInput | CommentUpsertWithWhereUniqueWithoutChapterInput[]
+    createMany?: CommentCreateManyChapterInputEnvelope
     set?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
     disconnect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
     delete?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
     connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
-    update?: CommentUpdateWithWhereUniqueWithoutChaptersInput | CommentUpdateWithWhereUniqueWithoutChaptersInput[]
-    updateMany?: CommentUpdateManyWithWhereWithoutChaptersInput | CommentUpdateManyWithWhereWithoutChaptersInput[]
+    update?: CommentUpdateWithWhereUniqueWithoutChapterInput | CommentUpdateWithWhereUniqueWithoutChapterInput[]
+    updateMany?: CommentUpdateManyWithWhereWithoutChapterInput | CommentUpdateManyWithWhereWithoutChapterInput[]
     deleteMany?: CommentScalarWhereInput | CommentScalarWhereInput[]
   }
 
@@ -17316,17 +17263,17 @@ export namespace Prisma {
     deleteMany?: UserCourseProgressScalarWhereInput | UserCourseProgressScalarWhereInput[]
   }
 
-  export type CommentUncheckedUpdateManyWithoutChaptersNestedInput = {
-    create?: XOR<CommentCreateWithoutChaptersInput, CommentUncheckedCreateWithoutChaptersInput> | CommentCreateWithoutChaptersInput[] | CommentUncheckedCreateWithoutChaptersInput[]
-    connectOrCreate?: CommentCreateOrConnectWithoutChaptersInput | CommentCreateOrConnectWithoutChaptersInput[]
-    upsert?: CommentUpsertWithWhereUniqueWithoutChaptersInput | CommentUpsertWithWhereUniqueWithoutChaptersInput[]
-    createMany?: CommentCreateManyChaptersInputEnvelope
+  export type CommentUncheckedUpdateManyWithoutChapterNestedInput = {
+    create?: XOR<CommentCreateWithoutChapterInput, CommentUncheckedCreateWithoutChapterInput> | CommentCreateWithoutChapterInput[] | CommentUncheckedCreateWithoutChapterInput[]
+    connectOrCreate?: CommentCreateOrConnectWithoutChapterInput | CommentCreateOrConnectWithoutChapterInput[]
+    upsert?: CommentUpsertWithWhereUniqueWithoutChapterInput | CommentUpsertWithWhereUniqueWithoutChapterInput[]
+    createMany?: CommentCreateManyChapterInputEnvelope
     set?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
     disconnect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
     delete?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
     connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
-    update?: CommentUpdateWithWhereUniqueWithoutChaptersInput | CommentUpdateWithWhereUniqueWithoutChaptersInput[]
-    updateMany?: CommentUpdateManyWithWhereWithoutChaptersInput | CommentUpdateManyWithWhereWithoutChaptersInput[]
+    update?: CommentUpdateWithWhereUniqueWithoutChapterInput | CommentUpdateWithWhereUniqueWithoutChapterInput[]
+    updateMany?: CommentUpdateManyWithWhereWithoutChapterInput | CommentUpdateManyWithWhereWithoutChapterInput[]
     deleteMany?: CommentScalarWhereInput | CommentScalarWhereInput[]
   }
 
@@ -17780,17 +17727,6 @@ export namespace Prisma {
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
   }
-  export type NestedJsonFilter<$PrismaModel = never> =
-    | PatchUndefined<
-        Either<Required<NestedJsonFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>,
-        Required<NestedJsonFilterBase<$PrismaModel>>
-      >
-    | OptionalFlat<Omit<Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>
-
-  export type NestedJsonFilterBase<$PrismaModel = never> = {
-    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-  }
 
   export type AccountCreateWithoutUserInput = {
     id?: string
@@ -17837,7 +17773,7 @@ export namespace Prisma {
     id?: string
     text: string
     timestamp?: Date | string
-    chapters: ChapterCreateNestedOneWithoutCommentsInput
+    chapter: ChapterCreateNestedOneWithoutCommentsInput
   }
 
   export type CommentUncheckedCreateWithoutUserInput = {
@@ -17926,12 +17862,11 @@ export namespace Prisma {
     image: string
     price: number
     level?: $Enums.Level
-    isPublished: boolean
+    isPublished?: boolean
     whatYouLearn?: CourseCreatewhatYouLearnInput | string[]
     requirements?: CourseCreaterequirementsInput | string[]
     targetAudience?: CourseCreatetargetAudienceInput | string[]
     language: string
-    analytics: InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
     embeddings?: CourseCreateembeddingsInput | number[]
@@ -17949,12 +17884,11 @@ export namespace Prisma {
     image: string
     price: number
     level?: $Enums.Level
-    isPublished: boolean
+    isPublished?: boolean
     whatYouLearn?: CourseCreatewhatYouLearnInput | string[]
     requirements?: CourseCreaterequirementsInput | string[]
     targetAudience?: CourseCreatetargetAudienceInput | string[]
     language: string
-    analytics: InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
     embeddings?: CourseCreateembeddingsInput | number[]
@@ -18152,7 +18086,6 @@ export namespace Prisma {
     requirements?: StringNullableListFilter<"Course">
     targetAudience?: StringNullableListFilter<"Course">
     language?: StringFilter<"Course"> | string
-    analytics?: JsonFilter<"Course">
     createdAt?: DateTimeFilter<"Course"> | Date | string
     updatedAt?: DateTimeFilter<"Course"> | Date | string
     userId?: StringFilter<"Course"> | string
@@ -18564,12 +18497,11 @@ export namespace Prisma {
     image: string
     price: number
     level?: $Enums.Level
-    isPublished: boolean
+    isPublished?: boolean
     whatYouLearn?: CourseCreatewhatYouLearnInput | string[]
     requirements?: CourseCreaterequirementsInput | string[]
     targetAudience?: CourseCreatetargetAudienceInput | string[]
     language: string
-    analytics: InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
     embeddings?: CourseCreateembeddingsInput | number[]
@@ -18587,12 +18519,11 @@ export namespace Prisma {
     image: string
     price: number
     level?: $Enums.Level
-    isPublished: boolean
+    isPublished?: boolean
     whatYouLearn?: CourseCreatewhatYouLearnInput | string[]
     requirements?: CourseCreaterequirementsInput | string[]
     targetAudience?: CourseCreatetargetAudienceInput | string[]
     language: string
-    analytics: InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: string
@@ -18675,7 +18606,6 @@ export namespace Prisma {
     requirements?: CourseUpdaterequirementsInput | string[]
     targetAudience?: CourseUpdatetargetAudienceInput | string[]
     language?: StringFieldUpdateOperationsInput | string
-    analytics?: InputJsonValue | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     embeddings?: CourseUpdateembeddingsInput | number[]
@@ -18697,7 +18627,6 @@ export namespace Prisma {
     requirements?: CourseUpdaterequirementsInput | string[]
     targetAudience?: CourseUpdatetargetAudienceInput | string[]
     language?: StringFieldUpdateOperationsInput | string
-    analytics?: InputJsonValue | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: StringFieldUpdateOperationsInput | string
@@ -18765,7 +18694,7 @@ export namespace Prisma {
     videoUrl: string
     videoUniqueId: string
     videoType: string
-    comments?: CommentCreateNestedManyWithoutChaptersInput
+    comments?: CommentCreateNestedManyWithoutChapterInput
     UserCourseProgress?: UserCourseProgressCreateNestedManyWithoutChapterInput
   }
 
@@ -18778,7 +18707,7 @@ export namespace Prisma {
     videoUrl: string
     videoUniqueId: string
     videoType: string
-    comments?: CommentUncheckedCreateNestedManyWithoutChaptersInput
+    comments?: CommentUncheckedCreateNestedManyWithoutChapterInput
     UserCourseProgress?: UserCourseProgressUncheckedCreateNestedManyWithoutChapterInput
   }
 
@@ -18799,12 +18728,11 @@ export namespace Prisma {
     image: string
     price: number
     level?: $Enums.Level
-    isPublished: boolean
+    isPublished?: boolean
     whatYouLearn?: CourseCreatewhatYouLearnInput | string[]
     requirements?: CourseCreaterequirementsInput | string[]
     targetAudience?: CourseCreatetargetAudienceInput | string[]
     language: string
-    analytics: InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
     embeddings?: CourseCreateembeddingsInput | number[]
@@ -18822,12 +18750,11 @@ export namespace Prisma {
     image: string
     price: number
     level?: $Enums.Level
-    isPublished: boolean
+    isPublished?: boolean
     whatYouLearn?: CourseCreatewhatYouLearnInput | string[]
     requirements?: CourseCreaterequirementsInput | string[]
     targetAudience?: CourseCreatetargetAudienceInput | string[]
     language: string
-    analytics: InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: string
@@ -18896,7 +18823,6 @@ export namespace Prisma {
     requirements?: CourseUpdaterequirementsInput | string[]
     targetAudience?: CourseUpdatetargetAudienceInput | string[]
     language?: StringFieldUpdateOperationsInput | string
-    analytics?: InputJsonValue | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     embeddings?: CourseUpdateembeddingsInput | number[]
@@ -18918,7 +18844,6 @@ export namespace Prisma {
     requirements?: CourseUpdaterequirementsInput | string[]
     targetAudience?: CourseUpdatetargetAudienceInput | string[]
     language?: StringFieldUpdateOperationsInput | string
-    analytics?: InputJsonValue | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: StringFieldUpdateOperationsInput | string
@@ -18928,27 +18853,27 @@ export namespace Prisma {
     enrollments?: EnrollmentUncheckedUpdateManyWithoutCourseNestedInput
   }
 
-  export type CommentCreateWithoutChaptersInput = {
+  export type CommentCreateWithoutChapterInput = {
     id?: string
     text: string
     timestamp?: Date | string
     user: UserCreateNestedOneWithoutCommentsInput
   }
 
-  export type CommentUncheckedCreateWithoutChaptersInput = {
+  export type CommentUncheckedCreateWithoutChapterInput = {
     id?: string
     text: string
     timestamp?: Date | string
     userId: string
   }
 
-  export type CommentCreateOrConnectWithoutChaptersInput = {
+  export type CommentCreateOrConnectWithoutChapterInput = {
     where: CommentWhereUniqueInput
-    create: XOR<CommentCreateWithoutChaptersInput, CommentUncheckedCreateWithoutChaptersInput>
+    create: XOR<CommentCreateWithoutChapterInput, CommentUncheckedCreateWithoutChapterInput>
   }
 
-  export type CommentCreateManyChaptersInputEnvelope = {
-    data: CommentCreateManyChaptersInput | CommentCreateManyChaptersInput[]
+  export type CommentCreateManyChapterInputEnvelope = {
+    data: CommentCreateManyChapterInput | CommentCreateManyChapterInput[]
   }
 
   export type SectionCreateWithoutChaptersInput = {
@@ -19003,20 +18928,20 @@ export namespace Prisma {
     data: UserCourseProgressCreateManyChapterInput | UserCourseProgressCreateManyChapterInput[]
   }
 
-  export type CommentUpsertWithWhereUniqueWithoutChaptersInput = {
+  export type CommentUpsertWithWhereUniqueWithoutChapterInput = {
     where: CommentWhereUniqueInput
-    update: XOR<CommentUpdateWithoutChaptersInput, CommentUncheckedUpdateWithoutChaptersInput>
-    create: XOR<CommentCreateWithoutChaptersInput, CommentUncheckedCreateWithoutChaptersInput>
+    update: XOR<CommentUpdateWithoutChapterInput, CommentUncheckedUpdateWithoutChapterInput>
+    create: XOR<CommentCreateWithoutChapterInput, CommentUncheckedCreateWithoutChapterInput>
   }
 
-  export type CommentUpdateWithWhereUniqueWithoutChaptersInput = {
+  export type CommentUpdateWithWhereUniqueWithoutChapterInput = {
     where: CommentWhereUniqueInput
-    data: XOR<CommentUpdateWithoutChaptersInput, CommentUncheckedUpdateWithoutChaptersInput>
+    data: XOR<CommentUpdateWithoutChapterInput, CommentUncheckedUpdateWithoutChapterInput>
   }
 
-  export type CommentUpdateManyWithWhereWithoutChaptersInput = {
+  export type CommentUpdateManyWithWhereWithoutChapterInput = {
     where: CommentScalarWhereInput
-    data: XOR<CommentUpdateManyMutationInput, CommentUncheckedUpdateManyWithoutChaptersInput>
+    data: XOR<CommentUpdateManyMutationInput, CommentUncheckedUpdateManyWithoutChapterInput>
   }
 
   export type SectionUpsertWithoutChaptersInput = {
@@ -19271,12 +19196,11 @@ export namespace Prisma {
     image: string
     price: number
     level?: $Enums.Level
-    isPublished: boolean
+    isPublished?: boolean
     whatYouLearn?: CourseCreatewhatYouLearnInput | string[]
     requirements?: CourseCreaterequirementsInput | string[]
     targetAudience?: CourseCreatetargetAudienceInput | string[]
     language: string
-    analytics: InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
     embeddings?: CourseCreateembeddingsInput | number[]
@@ -19294,12 +19218,11 @@ export namespace Prisma {
     image: string
     price: number
     level?: $Enums.Level
-    isPublished: boolean
+    isPublished?: boolean
     whatYouLearn?: CourseCreatewhatYouLearnInput | string[]
     requirements?: CourseCreaterequirementsInput | string[]
     targetAudience?: CourseCreatetargetAudienceInput | string[]
     language: string
-    analytics: InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: string
@@ -19386,7 +19309,6 @@ export namespace Prisma {
     requirements?: CourseUpdaterequirementsInput | string[]
     targetAudience?: CourseUpdatetargetAudienceInput | string[]
     language?: StringFieldUpdateOperationsInput | string
-    analytics?: InputJsonValue | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     embeddings?: CourseUpdateembeddingsInput | number[]
@@ -19408,7 +19330,6 @@ export namespace Prisma {
     requirements?: CourseUpdaterequirementsInput | string[]
     targetAudience?: CourseUpdatetargetAudienceInput | string[]
     language?: StringFieldUpdateOperationsInput | string
-    analytics?: InputJsonValue | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: StringFieldUpdateOperationsInput | string
@@ -19447,12 +19368,11 @@ export namespace Prisma {
     image: string
     price: number
     level?: $Enums.Level
-    isPublished: boolean
+    isPublished?: boolean
     whatYouLearn?: CourseCreatewhatYouLearnInput | string[]
     requirements?: CourseCreaterequirementsInput | string[]
     targetAudience?: CourseCreatetargetAudienceInput | string[]
     language: string
-    analytics: InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
     embeddings?: CourseCreateembeddingsInput | number[]
@@ -19470,12 +19390,11 @@ export namespace Prisma {
     image: string
     price: number
     level?: $Enums.Level
-    isPublished: boolean
+    isPublished?: boolean
     whatYouLearn?: CourseCreatewhatYouLearnInput | string[]
     requirements?: CourseCreaterequirementsInput | string[]
     targetAudience?: CourseCreatetargetAudienceInput | string[]
     language: string
-    analytics: InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: string
@@ -19544,7 +19463,7 @@ export namespace Prisma {
     videoUrl: string
     videoUniqueId: string
     videoType: string
-    comments?: CommentCreateNestedManyWithoutChaptersInput
+    comments?: CommentCreateNestedManyWithoutChapterInput
     Section: SectionCreateNestedOneWithoutChaptersInput
   }
 
@@ -19558,7 +19477,7 @@ export namespace Prisma {
     videoUniqueId: string
     videoType: string
     sectionId: string
-    comments?: CommentUncheckedCreateNestedManyWithoutChaptersInput
+    comments?: CommentUncheckedCreateNestedManyWithoutChapterInput
   }
 
   export type ChapterCreateOrConnectWithoutUserCourseProgressInput = {
@@ -19614,7 +19533,6 @@ export namespace Prisma {
     requirements?: CourseUpdaterequirementsInput | string[]
     targetAudience?: CourseUpdatetargetAudienceInput | string[]
     language?: StringFieldUpdateOperationsInput | string
-    analytics?: InputJsonValue | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     embeddings?: CourseUpdateembeddingsInput | number[]
@@ -19636,7 +19554,6 @@ export namespace Prisma {
     requirements?: CourseUpdaterequirementsInput | string[]
     targetAudience?: CourseUpdatetargetAudienceInput | string[]
     language?: StringFieldUpdateOperationsInput | string
-    analytics?: InputJsonValue | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: StringFieldUpdateOperationsInput | string
@@ -19714,7 +19631,7 @@ export namespace Prisma {
     videoUrl?: StringFieldUpdateOperationsInput | string
     videoUniqueId?: StringFieldUpdateOperationsInput | string
     videoType?: StringFieldUpdateOperationsInput | string
-    comments?: CommentUpdateManyWithoutChaptersNestedInput
+    comments?: CommentUpdateManyWithoutChapterNestedInput
     Section?: SectionUpdateOneRequiredWithoutChaptersNestedInput
   }
 
@@ -19727,7 +19644,7 @@ export namespace Prisma {
     videoUniqueId?: StringFieldUpdateOperationsInput | string
     videoType?: StringFieldUpdateOperationsInput | string
     sectionId?: StringFieldUpdateOperationsInput | string
-    comments?: CommentUncheckedUpdateManyWithoutChaptersNestedInput
+    comments?: CommentUncheckedUpdateManyWithoutChapterNestedInput
   }
 
   export type UserCourseChapterProgressCreateWithoutUserCourseSectionProgressInput = {
@@ -19932,12 +19849,11 @@ export namespace Prisma {
     image: string
     price: number
     level?: $Enums.Level
-    isPublished: boolean
+    isPublished?: boolean
     whatYouLearn?: CourseCreatewhatYouLearnInput | string[]
     requirements?: CourseCreaterequirementsInput | string[]
     targetAudience?: CourseCreatetargetAudienceInput | string[]
     language: string
-    analytics: InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
     embeddings?: CourseCreateembeddingsInput | number[]
@@ -19998,7 +19914,7 @@ export namespace Prisma {
   export type CommentUpdateWithoutUserInput = {
     text?: StringFieldUpdateOperationsInput | string
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
-    chapters?: ChapterUpdateOneRequiredWithoutCommentsNestedInput
+    chapter?: ChapterUpdateOneRequiredWithoutCommentsNestedInput
   }
 
   export type CommentUncheckedUpdateWithoutUserInput = {
@@ -20084,7 +20000,6 @@ export namespace Prisma {
     requirements?: CourseUpdaterequirementsInput | string[]
     targetAudience?: CourseUpdatetargetAudienceInput | string[]
     language?: StringFieldUpdateOperationsInput | string
-    analytics?: InputJsonValue | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     embeddings?: CourseUpdateembeddingsInput | number[]
@@ -20106,7 +20021,6 @@ export namespace Prisma {
     requirements?: CourseUpdaterequirementsInput | string[]
     targetAudience?: CourseUpdatetargetAudienceInput | string[]
     language?: StringFieldUpdateOperationsInput | string
-    analytics?: InputJsonValue | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     embeddings?: CourseUpdateembeddingsInput | number[]
@@ -20128,7 +20042,6 @@ export namespace Prisma {
     requirements?: CourseUpdaterequirementsInput | string[]
     targetAudience?: CourseUpdatetargetAudienceInput | string[]
     language?: StringFieldUpdateOperationsInput | string
-    analytics?: InputJsonValue | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     embeddings?: CourseUpdateembeddingsInput | number[]
@@ -20299,7 +20212,7 @@ export namespace Prisma {
     videoUrl?: StringFieldUpdateOperationsInput | string
     videoUniqueId?: StringFieldUpdateOperationsInput | string
     videoType?: StringFieldUpdateOperationsInput | string
-    comments?: CommentUpdateManyWithoutChaptersNestedInput
+    comments?: CommentUpdateManyWithoutChapterNestedInput
     UserCourseProgress?: UserCourseProgressUpdateManyWithoutChapterNestedInput
   }
 
@@ -20311,7 +20224,7 @@ export namespace Prisma {
     videoUrl?: StringFieldUpdateOperationsInput | string
     videoUniqueId?: StringFieldUpdateOperationsInput | string
     videoType?: StringFieldUpdateOperationsInput | string
-    comments?: CommentUncheckedUpdateManyWithoutChaptersNestedInput
+    comments?: CommentUncheckedUpdateManyWithoutChapterNestedInput
     UserCourseProgress?: UserCourseProgressUncheckedUpdateManyWithoutChapterNestedInput
   }
 
@@ -20325,7 +20238,7 @@ export namespace Prisma {
     videoType?: StringFieldUpdateOperationsInput | string
   }
 
-  export type CommentCreateManyChaptersInput = {
+  export type CommentCreateManyChapterInput = {
     id?: string
     text: string
     timestamp?: Date | string
@@ -20343,19 +20256,19 @@ export namespace Prisma {
     userId: string
   }
 
-  export type CommentUpdateWithoutChaptersInput = {
+  export type CommentUpdateWithoutChapterInput = {
     text?: StringFieldUpdateOperationsInput | string
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutCommentsNestedInput
   }
 
-  export type CommentUncheckedUpdateWithoutChaptersInput = {
+  export type CommentUncheckedUpdateWithoutChapterInput = {
     text?: StringFieldUpdateOperationsInput | string
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type CommentUncheckedUpdateManyWithoutChaptersInput = {
+  export type CommentUncheckedUpdateManyWithoutChapterInput = {
     text?: StringFieldUpdateOperationsInput | string
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: StringFieldUpdateOperationsInput | string

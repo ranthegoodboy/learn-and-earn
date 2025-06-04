@@ -36,7 +36,7 @@ export const dashboardNavigationItems: NonCollapsibleNavigationType = {
   items: [
     {
       title: "My Courses",
-      url: "/dashboard/my-courses",
+      url: "/dashboard/courses",
       icon: BookOpen,
       isActive: true,
     },

@@ -42,7 +42,7 @@ async function seedSectionsAndChapters() {
 async function clearSectionAndChapterData() {
   await prisma.comment.deleteMany({
     where: {
-      chapters: {
+      chapter: {
         Section: {
           course: {
             id: {

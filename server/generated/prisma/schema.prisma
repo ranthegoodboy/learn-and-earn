@@ -56,21 +56,20 @@ model Account {
 }
 
 model Course {
-  id             String   @id @default(cuid()) @map("_id") @db.ObjectId
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
   title          String
   description    String
   category       String
   image          String
   price          Float
   level          Level    @default(Beginner)
-  isPublished    Boolean
+  isPublished    Boolean  @default(false)
   whatYouLearn   String[]
   requirements   String[]
   targetAudience String[]
   language       String
 
   sections       Section[]
-  analytics      Json
   createdAt      DateTime             @default(now())
   updatedAt      DateTime             @updatedAt
   transactions   Transaction[]
@@ -97,7 +96,7 @@ model Section {
   sectionDescription String
   chapters           Chapter[]
   courseId           String    @db.ObjectId
-  course             Course    @relation(fields: [courseId], references: [id])
+  course             Course    @relation(fields: [courseId], references: [id], onDelete: Cascade)
 }
 
 model Chapter {
@@ -113,7 +112,7 @@ model Chapter {
   comments      Comment[]
 
   sectionId          String               @db.ObjectId
-  Section            Section              @relation(fields: [sectionId], references: [id])
+  Section            Section              @relation(fields: [sectionId], references: [id], onDelete: Cascade)
   UserCourseProgress UserCourseProgress[]
 }
 
@@ -125,7 +124,7 @@ model Comment {
   userId    String  @db.ObjectId
   user      User    @relation(fields: [userId], references: [id])
   chapterId String  @db.ObjectId
-  chapters  Chapter @relation(fields: [chapterId], references: [id])
+  chapter   Chapter @relation(fields: [chapterId], references: [id], onDelete: Cascade)
 }
 
 model Transaction {

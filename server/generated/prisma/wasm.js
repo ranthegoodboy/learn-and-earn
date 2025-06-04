@@ -155,7 +155,6 @@ exports.Prisma.CourseScalarFieldEnum = {
   requirements: 'requirements',
   targetAudience: 'targetAudience',
   language: 'language',
-  analytics: 'analytics',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   userId: 'userId',

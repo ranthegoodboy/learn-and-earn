@@ -22,7 +22,6 @@ async function seedCourses() {
           requirements: course.requirements,
           targetAudience: course.targetAudience,
           language: course.language,
-          analytics: course.analytics,
           createdAt: course.createdAt,
           updatedAt: course.updatedAt,
         },
@@ -35,7 +34,7 @@ async function seedCourses() {
 async function clearCourseData() {
   await prisma.comment.deleteMany({
     where: {
-      chapters: {
+      chapter: {
         Section: {
           course: {
             id: {

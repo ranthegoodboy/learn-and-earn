@@ -79,6 +79,17 @@ export type CourseListResponse = {
   };
 };
 
+export type MyCourseListResponse = {
+  message: string;
+  data: {
+    courses: MyCourseDetails[];
+    total: number;
+    page: number;
+    limit: number;
+    totalPages: number;
+  };
+};
+
 export type CourseOverview = {
   id: string;
   author: Author;
@@ -96,6 +107,17 @@ export type CourseOverview = {
   createdAt?: string;
   updatedAt?: string;
 };
+
+export type MyCourseDetails = {
+  isPublished: boolean;
+  enrollments: {
+    id: string;
+    user: {
+      id: string;
+      name: string;
+    }[];
+  }[];
+} & CourseOverview;
 
 export type CourseChapterOverview = Pick<
   CourseChapter,
