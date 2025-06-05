@@ -92,7 +92,7 @@ export type MyCourseListResponse = {
 
 export type CourseOverview = {
   id: string;
-  author: Author;
+  author?: Author;
   title: string;
   description: string;
   category: string;
@@ -110,7 +110,7 @@ export type CourseOverview = {
 
 export type MyCourseDetails = {
   isPublished: boolean;
-  enrollments: {
+  enrollments?: {
     id: string;
     user: {
       id: string;
